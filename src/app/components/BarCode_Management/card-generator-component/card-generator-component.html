@@ -1,0 +1,361 @@
+<!-- <div class="container py-4">
+  <div class="row">
+    <div class="col-md-5">
+      <mat-card class="config-card">
+        <mat-card-header>
+          <mat-card-title class="title">Card Configuration</mat-card-title>
+          <mat-card-subtitle class="subtitle">Set up your card template and QR positioning</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="form-container mt-3">
+            <div class="file-upload-section mb-3">
+              <label class="d-block mb-2 head" >Card Background</label>
+              <input type="file" #fileInput (change)="onFileSelected($event)" accept="image/*" hidden>
+              <div style="display:flex ; justify-content:space-between">
+              <button class="btn" (click)="fileInput.click()">
+                <mat-icon style="color: green;">upload</mat-icon> Upload Design
+              </button>
+              <span class="ms-2  show" *ngIf="cardDesignUrl">Design uploaded!</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+               
+<div class="input-group mb-3">
+  <input  class="form-control" placeholder="Num of cards to generate"
+   type="number" [(ngModel)]="numCards" min="1"
+   
+   aria-describedby="basic-addon2">
+  <span class="input-group-text" id="basic-addon2">
+     <mat-icon matSuffix style="color: var(--button-add-color);">numbers</mat-icon>
+  </span>
+</div>
+
+              </div>
+            </div>
+
+            <div class="qr-settings mt-2" *ngIf="cardDesignUrl">
+              <h4 class="mb-3 head">QR Code Positioning</h4>
+              
+              <div class="setting-item mb-3">
+                <label>QR Size: {{qrSize}}px</label>
+                <mat-slider min="40" max="150" step="1"
+               
+                >
+                  <input matSliderThumb [(ngModel)]="qrSize" (ngModelChange)="updateSample()">
+                </mat-slider>
+              </div>
+
+              <div class="setting-item mb-3">
+                <label>Vertical Position: {{qrTop}}%</label>
+                <mat-slider min="0" max="100" step="1">
+                  <input matSliderThumb [(ngModel)]="qrTop">
+                </mat-slider>
+              </div>
+
+              <div class="setting-item mb-3">
+                <label>Horizontal Position: {{qrLeft}}%</label>
+                <mat-slider min="0" max="100" step="1">
+                  <input matSliderThumb [(ngModel)]="qrLeft">
+                </mat-slider>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <button class="generateBtn" (click)="generateCards()" [disabled]="!cardDesignUrl">
+            <mat-icon style="color:green;">dynamic_feed</mat-icon> Generate Cards
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <div class="col-md-7">
+      <mat-card class="preview-card h-100">
+        <mat-card-header>
+          <mat-card-title class="title">Live Template Preview</mat-card-title>
+        </mat-card-header>
+        
+        <mat-card-content class="  d-flex justify-content-center align-items-center 
+        bg-light p-4 mt-3 rounded preview-surface">
+
+
+
+        
+          <div *ngIf="!cardDesignUrl" class="text-center text-muted py-5">
+            <mat-icon style="font-size: 48px; width: 48px; height: 48px;">image_not_supported</mat-icon>
+            <p>Upload a card design to see preview</p>
+          </div>
+
+          <div class="card-preview-container" *ngIf="cardDesignUrl && sampleStudent"
+          
+          >
+            <div class="student-card preview-mode">
+              <img class="background" [src]="cardDesignUrl" alt="Card Background">
+              <div class="qr-wrapper" [style.top.%]="qrTop" [style.left.%]="qrLeft">
+                <img class="qr" [src]="sampleStudent.qrDataUrl" alt="QR Code" [style.width.px]="qrSize">
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row mt-4" *ngIf="students.length > 0">
+    <div class="col-12">
+      <mat-card class="slider-card">
+        <mat-card-header>
+          <mat-card-title class="head">Generated Cards ({{students.length}})</mat-card-title>
+          <div class="ms-auto">
+            <button class="generateBtn" (click)="printCards()">
+              <mat-icon style="color:green">print</mat-icon> Print All Cards
+            </button>
+          </div>
+        </mat-card-header>
+        
+        <mat-card-content class="p-4 slider-wrapper">
+          <swiper-container 
+  slides-per-view="auto"
+  centered-slides="true"
+  navigation="true"
+  space-between="30"
+  class="cards-slider">
+
+  <swiper-slide *ngFor="let student of students" class="slider-item">
+    <div class="student-card">
+      <img class="background" [src]="cardDesignUrl" alt="Card Background">
+
+      <div class="qr-wrapper" [style.top.%]="qrTop" [style.left.%]="qrLeft">
+        <img class="qr" [src]="student.qrDataUrl" [style.width.px]="qrSize">
+      </div>
+    </div>
+  </swiper-slide>
+
+</swiper-container>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+  <div id="cards-to-print" style="display: none;">
+    <div class="student-card" *ngFor="let student of students">
+      <img class="background" [src]="cardDesignUrl" alt="Card Background">
+      <div class="qr-wrapper" [style.top.%]="qrTop" [style.left.%]="qrLeft">
+        <img class="qr" [src]="student.qrDataUrl" alt="QR Code" [style.width.px]="qrSize">
+      </div>
+      
+    </div>
+  </div>
+</div> -->
+
+<div class="container py-4">
+  <div class="row">
+
+    <!-- CONFIG PANEL -->
+    <div class="col-md-5">
+      <mat-card class="show">
+
+        <mat-card-header>
+          <mat-card-title class="title">{{ 'BARCODE_MANAGEMENT.CARD_CONFIG' | translate }}</mat-card-title>
+          <mat-card-subtitle class="subtitle">{{ 'BARCODE_MANAGEMENT.UPLOAD_AND_PLACE_QR' | translate }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+
+          <!-- Upload -->
+          <input type="file" #fileInput hidden accept="image/*"
+                 (change)="onFileSelected($event)">
+
+                 <div style="display: flex; justify-content: space-between;margin-top: 25px;">
+          <button class="btn" (click)="fileInput.click()">
+            <mat-icon>upload</mat-icon>
+            {{ 'BARCODE_MANAGEMENT.UPLOAD_DESIGN' | translate }}
+          </button>
+
+          <div *ngIf="cardDesignUrl" class="mt-3 text-success">
+            {{ 'BARCODE_MANAGEMENT.DESIGN_UPLOADED' | translate }}
+          </div>
+</div>
+          <!-- Number of cards -->
+          <div class="mt-3">
+                 <input type="number"
+                   [(ngModel)]="numCards"
+                   class="form-control"
+                   placeholder="{{ 'BARCODE_MANAGEMENT.NUM_CARDS_PLACEHOLDER' | translate }}">
+          </div>
+
+          <!-- QR Controls -->
+          <div *ngIf="cardDesignUrl" class="mt-4">
+
+            <h4>{{ 'BARCODE_MANAGEMENT.QR_SETTINGS' | translate }}</h4>
+
+            <label>{{ 'BARCODE_MANAGEMENT.QR_SIZE' | translate }} {{qrSize}}px</label>
+
+            <mat-slider min="40" max="150" style="color:var(--button-add-color)">
+              <input matSliderThumb
+                     [(ngModel)]="qrSize">
+            </mat-slider>
+
+          </div>
+
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+
+          <button class="generateBtn"
+                  (click)="generateCards()"
+                  [disabled]="!cardDesignUrl">
+
+            <mat-icon>dynamic_feed</mat-icon>
+            {{ 'BARCODE_MANAGEMENT.GENERATE_CARDS' | translate }}
+
+          </button>
+
+        </mat-card-actions>
+
+      </mat-card>
+    </div>
+
+
+    <!-- PREVIEW PANEL -->
+    <div class="col-md-7 show">
+
+      <mat-card>
+
+        <mat-card-header>
+          <mat-card-title class="title">{{ 'BARCODE_MANAGEMENT.LIVE_PREVIEW' | translate }}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content
+          class="preview-surface">
+
+          <div *ngIf="!cardDesignUrl" class="text-center">
+            <mat-icon style="font-size:48px">image_not_supported</mat-icon>
+            <p>{{ 'BARCODE_MANAGEMENT.UPLOAD_CARD_DESIGN' | translate }}</p>
+          </div>
+
+          <!-- CARD -->
+          <div *ngIf="cardDesignUrl && sampleStudent"
+               class="student-card preview-mode"
+               (mousedown)="startDrag($event)">
+
+            <img class="background"
+                 [src]="cardDesignUrl"
+                 (load)="onImageLoaded()">
+
+            <div class="qr-wrapper"
+                 [style.top.%]="qrTop"
+                 [style.left.%]="qrLeft">
+
+              <img class="qr"
+                   [src]="sampleStudent.qrDataUrl"
+                   [style.width.px]="qrSize">
+
+            </div>
+
+          </div>
+
+        </mat-card-content>
+
+      </mat-card>
+
+    </div>
+
+  </div>
+
+
+  <!-- GENERATED CARDS -->
+  <div class="row mt-4 " *ngIf="students.length">
+
+    <div class="col-12">
+
+      <mat-card>
+
+        <mat-card-header>
+
+          <mat-card-title class="title">
+            {{ 'BARCODE_MANAGEMENT.GENERATED_CARDS' | translate }} ({{students.length}})
+          </mat-card-title>
+
+          <button class="generateBtn ms-auto"
+                  (click)="printCards()">
+
+            <mat-icon>print</mat-icon>
+            {{ 'BARCODE_MANAGEMENT.PRINT' | translate }}
+
+          </button>
+
+        </mat-card-header>
+
+
+        <mat-card-content>
+
+          <swiper-container
+            slides-per-view="auto"
+            centered-slides="true"
+            navigation="true"
+            space-between="30">
+
+            <swiper-slide
+              *ngFor="let student of students"
+              class="slider-item">
+
+              <div class="student-card">
+
+                <img class="background"
+                     [src]="cardDesignUrl">
+
+                <div class="qr-wrapper"
+                     [style.top.%]="qrTop"
+                     [style.left.%]="qrLeft">
+
+                  <img class="qr"
+                       [src]="student.qrDataUrl"
+                       [style.width.px]="qrSize">
+
+                </div>
+
+              </div>
+
+            </swiper-slide>
+
+          </swiper-container>
+
+        </mat-card-content>
+
+      </mat-card>
+
+    </div>
+
+  </div>
+
+
+  <!-- PRINT AREA -->
+  <div id="cards-to-print" style="display:none">
+
+    <div class="student-card"
+         *ngFor="let student of students">
+
+      <img class="background"
+           [src]="cardDesignUrl">
+
+      <div class="qr-wrapper"
+           [style.top.%]="qrTop"
+           [style.left.%]="qrLeft">
+
+        <img class="qr"
+             [src]="student.qrDataUrl"
+             [style.width.px]="qrSize">
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+

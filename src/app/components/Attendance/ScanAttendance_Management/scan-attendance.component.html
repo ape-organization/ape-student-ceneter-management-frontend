@@ -1,0 +1,148 @@
+<div class="scan-container">
+  <mat-card class="main-card">
+    <mat-tab-group [(selectedIndex)]="selectedTabIndex" mat-stretch-tabs="false" mat-align-tabs="start">
+      
+      <!-- Tab 1: QR/Barcode Scan -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">qr_code_scanner</mat-icon>
+          <span>Scan Code</span>
+        </ng-template>
+        
+        <div class="tab-content scan-mode">
+          <div class="scanner-visual" [ngClass]="statusType">
+            <mat-icon *ngIf="statusType === 'idle'">sensors</mat-icon>
+            <mat-icon *ngIf="statusType === 'success'" class="success-icon">check_circle</mat-icon>
+            <mat-icon *ngIf="statusType === 'error'" class="error-icon">error</mat-icon>
+            <mat-icon *ngIf="statusType === 'warning'" class="warning-icon">warning</mat-icon>
+            
+            <div class="status-info">
+              <h3>{{ statusMessage }}</h3>
+              <p *ngIf="statusType === 'idle'">Waiting for QR or Barcode scan...</p>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <!-- Tab 2: Search by Name -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">person_search</mat-icon>
+          <span>By Name</span>
+        </ng-template>
+        
+        <div class="tab-content search-mode">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Search Student Name or ID</mat-label>
+            <input type="text"
+                   placeholder="Type student name..."
+                   aria-label="Student"
+                   matInput
+                   [formControl]="studentSearchControl"
+                   [matAutocomplete]="auto">
+            <mat-icon matPrefix>search</mat-icon>
+            <mat-autocomplete #auto="matAutocomplete" 
+           
+            (optionSelected)="onStudentSelected($event)">
+              <mat-option *ngFor="let student of filteredStudents | async" [value]="student"
+              style="background-color: var(--background-white-color);"
+              >
+                <div class="student-option">
+                  <span class="student-name">{{student.name}}</span>
+                  <span class="student-id">ID: {{student.id}}</span>
+                </div>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <p class="hint">Search and select a student to mark attendance</p>
+        </div>
+      </mat-tab>
+
+      <!-- Tab 3: Manual Entry -->
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon class="tab-icon">keyboard</mat-icon>
+          <span>Manual Code</span>
+        </ng-template>
+        
+        <div class="tab-content manual-mode">
+          <div class="manual-input-row">
+            <mat-form-field appearance="outline" class="id-input">
+              <mat-label>Enter Student ID / Code</mat-label>
+              <input matInput [(ngModel)]="manualId" (keyup.enter)="onManualSubmit()" placeholder="e.g. 1001">
+              <mat-icon matPrefix>pin</mat-icon>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="!manualId || isProcessing" (click)="onManualSubmit()">
+              Submit
+            </button>
+          </div>
+          <p class="hint">Type the code manually if the scanner is not working</p>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+
+    <mat-progress-bar *ngIf="isProcessing" mode="indeterminate"></mat-progress-bar>
+  </mat-card>
+
+  <!-- Last Scanned Student Card -->
+  <mat-card class="student-info-card" 
+  *ngIf="lastScannedStudent" [ngClass]="'status-' + statusType">
+    <mat-card-header>
+      <div mat-card-avatar class="student-avatar">
+        <mat-icon>account_circle</mat-icon>
+      </div>
+      <mat-card-title>{{ lastScannedStudent.name }}</mat-card-title>
+      <mat-card-subtitle>ID: {{ lastScannedStudent.id }}</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="label">Status</span>
+          <span class="value" [ngClass]="statusType">{{ statusType | uppercase }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Time</span>
+          <span class="value">{{ lastScannedStudent.scanTime | date:'mediumTime' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Class</span>
+          <span class="value">{{ lastScannedStudent.currentClassId || 'N/A' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Phone</span>
+          <span class="value">{{ lastScannedStudent.phone || 'N/A' }}</span>
+        </div>
+      </div>
+
+      <!-- Payment Integration UI -->
+      <div class="payment-prompt" *ngIf="pendingPayment" 
+           [ngClass]="pendingPayment.isMandatory ? 'mandatory-alert' : 'pending-alert'"
+           style="margin-top: 16px; padding: 16px; border-radius: 8px; border: 1px solid #ccc; background: rgba(0,0,0,0.03);">
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+          <mat-icon [color]="pendingPayment.isMandatory ? 'warn' : 'accent'">
+            {{ pendingPayment.isMandatory ? 'priority_high' : 'info' }}
+          </mat-icon>
+          <strong style="font-size: 1.1rem;">{{ pendingPayment.reason }}</strong>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <span style="opacity: 0.7;">Due Balance: </span>
+            <span style="font-size: 1.2rem; font-weight: 500;">{{ pendingPayment.amountDue | currency }}</span>
+          </div>
+          
+          <div class="payment-actions" style="display: flex; gap: 8px;">
+            <button mat-raised-button color="primary" (click)="onCollectPayment('FULL')">Pay Full</button>
+            <button mat-stroked-button *ngIf="!pendingPayment.isMandatory" (click)="onCollectPayment('PARTIAL')">Pay Partial</button>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="footer-help" *ngIf="selectedTabIndex === 0">
+    <mat-icon>info</mat-icon>
+    <span>Scanner Active - Place code under the reader</span>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{ isEditMode ? ('CLASS_MANAGEMENT.EDIT_CLASS' | translate) : ('CLASS_MANAGEMENT.ADD_CLASS' | translate) }}
+  </h4>
+  <button type="button" class="btn btn-cancel shadow-none" (click)="onCancel()" aria-label="Close">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<form [formGroup]="classForm" class="container">
+  <div class="row g-4 pb-2" style="background-color: var(--background-white-color);">
+    <!-- Class Name -->
+    <div class="col-md-12">
+      <label class="form-label">{{ 'CLASS_MANAGEMENT.CLASS_NAME' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">class</mat-icon></span>
+        <input type="text" class="form-control shadow-none" 
+               formControlName="name" [placeholder]="'CLASS_MANAGEMENT.CLASS_NAME' | translate"
+               [class.is-invalid]="classForm.get('name')?.invalid && classForm.get('name')?.touched">
+      </div>
+      @if (classForm.get('name')?.hasError('required') && classForm.get('name')?.touched) {
+        <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.NAME_REQUIRED' | translate }}</div>
+      }
+    </div>
+
+    <!-- Subject and Teacher -->
+    <div class="col-md-6">
+      <label class="form-label">{{ 'CLASS_MANAGEMENT.SUBJECT' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">book</mat-icon></span>
+        <select class="form-select shadow-none" formControlName="subject"
+                [class.is-invalid]="classForm.get('subject')?.invalid && classForm.get('subject')?.touched">
+          <option value="" disabled>{{ 'CLASS_MANAGEMENT.SUBJECT' | translate }}</option>
+          @for (subject of subjects; track subject) {
+            <option [value]="subject">{{ subject | translate }}</option>
+          }
+        </select>
+      </div>
+      @if (classForm.get('subject')?.hasError('required') && classForm.get('subject')?.touched) {
+        <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.SUBJECT_REQUIRED' | translate }}</div>
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">{{ 'CLASS_MANAGEMENT.TEACHER' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">person</mat-icon></span>
+        <select class="form-select shadow-none" formControlName="teacherId"
+                [class.is-invalid]="classForm.get('teacherId')?.invalid && classForm.get('teacherId')?.touched">
+          <option value="" disabled>{{ 'CLASS_MANAGEMENT.TEACHER' | translate }}</option>
+          @for (teacher of teachers; track teacher.id) {
+            <option [value]="teacher.id">{{ teacher.name }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <!-- Grade and Price -->
+    <div class="col-md-6">
+      <label class="form-label">{{ 'CLASS_MANAGEMENT.GRADE' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">school</mat-icon></span>
+        <select class="form-select shadow-none" formControlName="grade"
+                [class.is-invalid]="classForm.get('grade')?.invalid && classForm.get('grade')?.touched">
+          <option value="" disabled>{{ 'CLASS_MANAGEMENT.GRADE' | translate }}</option>
+          @for (grade of grades; track grade) {
+            <option [value]="grade">{{ grade | translate }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">{{ 'CLASS_MANAGEMENT.CAPACITY' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">groups</mat-icon></span>
+        <input type="number" class="form-control shadow-none" formControlName="capacity" min="1"
+               [class.is-invalid]="classForm.get('capacity')?.invalid && classForm.get('capacity')?.touched">
+      </div>
+      @if (classForm.get('capacity')?.hasError('min') && classForm.get('capacity')?.touched) {
+        <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.MIN_VALUE' | translate }}</div>
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">{{ 'CLASS_MANAGEMENT.PRICE_PER_STUDENT' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">payments</mat-icon></span>
+        <input type="number" class="form-control shadow-none" formControlName="price" min="0">
+      </div>
+    </div>
+
+    <!-- Status Switch -->
+    <div class="col-md-6 d-flex align-items-end pb-2">
+      <div class="form-check form-switch ps-5">
+        <input class="form-check-input shadow-none" type="checkbox" id="classActiveSwitch" formControlName="isActive">
+        <label class="form-check-label fw-bold ms-2" for="classActiveSwitch" style="color: var(--main-color);">
+          {{ 'CLASS_MANAGEMENT.STATUS' | translate }}
+        </label>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="modal-footer d-flex justify-content-end gap-2">
+  <button type="button" class="btn btn-cancel px-4 py-2 fw-medium rounded-3" (click)="onCancel()">
+    {{ 'COMMON.CANCEL' | translate }}
+  </button>
+  <button type="button" class="btn btn-submit px-5 py-2 fw-bold rounded-3 shadow-sm" (click)="onSubmit()" [disabled]="classForm.invalid">
+    {{ isEditMode ? ('COMMON.SAVE_CHANGES' | translate) : ('COMMON.ADD' | translate) }}
+  </button>
+</div>

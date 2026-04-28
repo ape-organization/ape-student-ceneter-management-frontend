@@ -1,0 +1,86 @@
+
+
+<div class="header">
+ <div class="container d-flex justify-content-end notifications">
+  <app-notifications></app-notifications>
+</div>
+  <div class="darkTheme" (click)="toggleDarkMode()">
+    <i class="fa-regular" [class.fa-moon]="!darkMode" [class.fa-sun]="darkMode"></i>
+  </div>
+ 
+<!------------>
+<div class="language-dropdown relative " >
+  <!-- Current Language Button -->
+  <div
+    class="flex items-center justify-between px-4 py-2 rounded-xl 
+    shadow-md bg-white dark:bg-gray-800 cursor-pointer
+     hover:shadow-lg transition-all min-w-[160px]"
+    (click)="toggleDropdown()" style="background-color: yellowgreen;"
+  >
+    <div class="flex items-center gap-2" style="padding: 5px;">
+      <img [src]="currentFlag" alt="flag" class="w-6 h-4 rounded-sm object-cover" />
+      <span class="font-semibold text-gray-800 dark:text-gray-200">{{ currentLabel }}</span>
+    <mat-icon
+      class="text-gray-400 transition-transform"
+      [class.rotate-180]="dropdownOpen"
+      >keyboard_arrow_down</mat-icon
+    >
+    </div>
+   
+  </div>
+
+  <!-- Dropdown Menu -->
+  <div
+    *ngIf="dropdownOpen" 
+    class="absolute right-0 mt-1 w-44 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden z-50"
+  >
+    <button
+      *ngFor="let lang of languages"
+      (click)="changeLanguage(lang.code)"
+      class="w-full flex items-center justify-between px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 transition font-medium text-gray-700 dark:text-gray-200"
+    >
+      <div class="flex items-center gap-3">
+        <img [src]="lang.flag" alt="flag" class="w-5 h-3 
+        rounded-sm object-cover" />
+        {{ lang.label }}
+      </div>
+      <mat-icon *ngIf="languageService.getLang() === lang.code" class="text-blue-500">check</mat-icon>
+    </button>
+  </div>
+</div>
+
+
+
+
+
+
+  <!---------------->
+  <!-- <div class="language-toggle" (click)="toggleLanguage()" style="cursor: pointer; margin: 0 15px; font-weight: bold;">
+    <span>{{ 'LANGUAGE.TOGGLE' | translate }}</span>
+  </div> -->
+
+  <div class="user-menu" (click)="toggleMenu()">
+
+    <div class="user-info">
+      <span>{{username}}</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+
+    <div class="dropdown" *ngIf="isMenuOpen">
+
+      <div class="dropdown-item">
+        <i class="fa-regular fa-user"></i>
+        {{ 'USER.PROFILE' | translate }}
+      </div>
+
+      <div class="dropdown-item">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        {{ 'USER.SIGN_OUT' | translate }}
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+  

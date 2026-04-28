@@ -1,0 +1,201 @@
+<div class="sms-center-container whatsapp-theme">
+  <div class="header-section">
+    <h2>
+      <mat-icon class="whatsapp-icon">whatsapp</mat-icon> WhatsApp Bulk Messages
+      <span class="status-badge" [ngClass]="whatsappStatus">
+        {{ whatsappStatus | titlecase }}
+      </span>
+    </h2>
+    <p class="subtitle">Send instant bulk WhatsApp notifications to students and parents.</p>
+  </div>
+
+  <div class="content-grid">
+    <!-- Composition Card -->
+    <mat-card class="compose-card">
+      <mat-card-header>
+        <mat-card-title class="title">New Message</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="form-row">
+          <div class="custom-select-container">
+            <label class="select-label">Select Recipients</label>
+            <div class="select-input" (click)="toggleRecipientDropdown()">
+              <span>
+                {{ selectedRecipientType ? (recipientTypes.find(t => t.value === selectedRecipientType)?.viewValue) : 'Select Recipients' }}
+              </span>
+              <div class="right-section">
+                <mat-icon class="icon">people</mat-icon>
+                <span class="arrow">▼</span>
+              </div>
+            </div>
+            <div class="select-dropdown" *ngIf="isRecipientDropdownOpen">
+              <div class="select-option" *ngFor="let type of recipientTypes" (click)="selectRecipient(type)">
+                {{ type.viewValue }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conditional: Class Selector -->
+        <div class="form-row" *ngIf="selectedRecipientType === 'by_class'">
+          <div class="custom-select-container">
+            <label class="select-label">Choose Class</label>
+            <div class="select-input" (click)="toggleClassDropdown()">
+              <span>
+                {{ selectedClass?.name ? (selectedClass.name + ' (' + selectedClass.count + ' students)') : 'Choose Class' }}
+              </span>
+              <span class="arrow">▼</span>
+            </div>
+            <div class="select-dropdown" *ngIf="isClassDropdownOpen">
+              <div class="select-option" *ngFor="let cls of classes" (click)="selectClass(cls)">
+                {{ cls.name }} ({{ cls.count }} students)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conditional: Grade Selector -->
+        <div class="form-row" *ngIf="selectedRecipientType === 'by_grade'">
+          <div class="custom-select-container">
+            <label class="select-label">Choose Grade</label>
+            <div class="select-input" (click)="toggleGradeDropdown()">
+              <span>
+                {{ selectedGradeId ? (grades.find(g => g.id === selectedGradeId)?.name + ' (' + grades.find(g => g.id === selectedGradeId)?.count + ' students)') : 'Choose Grade' }}
+              </span>
+              <span class="arrow">▼</span>
+            </div>
+            <div class="select-dropdown" *ngIf="isGradeDropdownOpen">
+              <div class="select-option" *ngFor="let grade of grades" (click)="selectGrade(grade)">
+                {{ grade.name }} ({{ grade.count }} students)
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Templates -->
+        <div class="form-row">
+          <div class="custom-select-container">
+            <label class="select-label">Use Template (Optional)</label>
+            <div class="select-input" (click)="toggleTemplateDropdown()">
+              <span>Select a template...</span>
+              <div class="right-section">
+                <mat-icon class="icon">description</mat-icon>
+                <span class="arrow">▼</span>
+              </div>
+            </div>
+            <div class="select-dropdown" *ngIf="isTemplateDropdownOpen">
+              <div class="select-option" *ngFor="let template of templates" (click)="selectTemplate(template)">
+                {{ template.name }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conditional: Custom Numbers -->
+        <div class="custom-input-container" *ngIf="selectedRecipientType === 'custom'">
+          <label class="input-label">Phone Numbers (comma separated)</label>
+          <textarea [(ngModel)]="customNumbers" placeholder="e.g. +1234567890, +0987654321" rows="2" class="custom-textarea"></textarea>
+          <div class="input-hint">Include country code for WhatsApp messages</div>
+        </div>
+
+        <!-- Message Body -->
+        <div class="form-row">
+          <div class="custom-input-container message-field">
+            <label class="input-label">Message Content</label>
+            <textarea [(ngModel)]="messageBody" rows="6" class="custom-textarea message-textarea" placeholder="Type your WhatsApp message here..."></textarea>
+            <div class="message-footer">
+              <span class="message-counter">
+                {{ messageLength }} characters
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scheduling -->
+        <div class="schedule-row">
+          <label class="toggle-container">
+            <input type="checkbox" [(ngModel)]="isScheduled">
+            <span class="toggle-slider"></span>
+            <span class="toggle-label">Schedule message</span>
+          </label>
+          <div class="date-field" *ngIf="isScheduled">
+            <input type="datetime-local" [(ngModel)]="scheduleDate" class="custom-date-input" />
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button (click)="checkStatus()">Refresh Status</button>
+        <button mat-raised-button class="send-btn whatsapp-btn" (click)="sendMessage()" [disabled]="!selectedRecipientType || messageBody.length === 0 || whatsappStatus !== 'online'">
+          <mat-icon>send</mat-icon> {{ isScheduled ? 'Schedule' : 'Send WhatsApp' }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- Summary Card -->
+    <div class="stats-column">
+      <mat-card class="stats-card">
+        <mat-card-header>
+          <mat-card-title class="title">Summary</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="stat-item">
+            <span class="label">Recipients:</span>
+            <span class="value">{{ currentRecipientCount }}</span>
+          </div>
+          <div class="stat-item highlight">
+            <span class="label">Total Messages:</span>
+            <span class="value">{{ currentRecipientCount }}</span>
+          </div>
+          <p class="note">WhatsApp messages are typically free if within 24-hour window, or cost based on your provider.</p>
+        </mat-card-content>
+      </mat-card>
+      
+      <mat-card class="whatsapp-qr-card" *ngIf="whatsappStatus === 'offline'">
+         <mat-card-content>
+           <p>WhatsApp not connected</p>
+           <button mat-raised-button color="primary">Scan QR Code</button>
+         </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- History Log -->
+    <div class="history-section">
+      <mat-card class="history-card">
+        <mat-card-header>
+          <mat-card-title class="title">Recent Activity</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="history-table-container">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Sent By</th>
+                  <th>Timestamp</th>
+                  <th>Recipient(s)</th>
+                  <th>Message Preview</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of history">
+                  <td>{{ item.sender }}</td>
+                  <td>{{ item.timestamp | date:'short' }}</td>
+                  <td>{{ item.recipient }}</td>
+                  <td class="message-cell" [title]="item.message">{{ item.message }}</td>
+                  <td>
+                    <span class="status-indicator" [ngClass]="item.status">
+                      {{ item.status }}
+                    </span>
+                  </td>
+                </tr>
+                <tr *ngIf="history.length === 0">
+                  <td colspan="5" class="empty-state">No history found</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

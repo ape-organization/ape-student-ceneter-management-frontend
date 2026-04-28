@@ -1,0 +1,43 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{ isEditMode ? ('SUBJECT_MANAGEMENT.EDIT_SUBJECT' | translate) : ('SUBJECT_MANAGEMENT.ADD_SUBJECT' | translate) }}
+  </h4>
+  <button type="button" class="btn btn-cancel shadow-none" (click)="onCancel()" aria-label="Close">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<form [formGroup]="subjectForm" class="container">
+  <div class="row g-4 pb-2" style="background-color: var(--background-white-color);">
+    <div class="col-md-12">
+      <label class="form-label">{{ 'SUBJECT_MANAGEMENT.NAME_LABEL' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">menu_book</mat-icon></span>
+        <input type="text" class="form-control shadow-none" 
+               formControlName="name" [placeholder]="'SUBJECT_MANAGEMENT.NAME_LABEL' | translate"
+               [class.is-invalid]="subjectForm.get('name')?.invalid && subjectForm.get('name')?.touched">
+      </div>
+      @if (subjectForm.get('name')?.hasError('required') && subjectForm.get('name')?.touched) {
+        <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.REQUIRED' | translate }}</div>
+      }
+    </div>
+
+    <div class="col-md-12 d-flex align-items-center pb-2">
+      <div class="form-check form-switch ps-5">
+        <input class="form-check-input shadow-none" type="checkbox" id="subjectActiveSwitch" formControlName="isActive">
+        <label class="form-check-label fw-bold ms-2" for="subjectActiveSwitch" style="color: var(--main-color);">
+          {{ 'SUBJECT_MANAGEMENT.STATUS_LABEL' | translate }}
+        </label>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="modal-footer d-flex justify-content-end gap-2">
+  <button type="button" class="btn btn-cancel px-4 py-2 fw-medium rounded-3" (click)="onCancel()">
+    {{ 'COMMON.CANCEL' | translate }}
+  </button>
+  <button type="button" class="btn btn-submit px-5 py-2 fw-bold rounded-3 shadow-sm" (click)="onSubmit()" [disabled]="subjectForm.invalid">
+    {{ isEditMode ? ('COMMON.SAVE' | translate) : ('COMMON.ADD' | translate) }}
+  </button>
+</div>

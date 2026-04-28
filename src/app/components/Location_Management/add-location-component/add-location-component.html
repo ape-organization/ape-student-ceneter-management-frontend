@@ -1,0 +1,73 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{ isEditMode ? ('LOCATION_MANAGEMENT.EDIT_LOCATION' | translate) : ('LOCATION_MANAGEMENT.ADD_LOCATION' | translate) }}
+  </h4>
+  <button type="button" class="btn btn-cancel shadow-none" (click)="onCancel()" aria-label="Close">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<form [formGroup]="locationForm" class="container">
+  <div class="row g-4 pb-2" style="background-color: var(--background-white-color);">
+    <div class="col-md-12">
+      <label class="form-label">{{ 'LOCATION_MANAGEMENT.BRANCH_LABEL' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">business</mat-icon></span>
+        <input type="text" class="form-control shadow-none" 
+               formControlName="branch" [placeholder]="'LOCATION_MANAGEMENT.BRANCH_PLACEHOLDER' | translate"
+               [class.is-invalid]="locationForm.get('branch')?.invalid && locationForm.get('branch')?.touched">
+      </div>
+      @if (locationForm.get('branch')?.hasError('required') && locationForm.get('branch')?.touched) {
+        <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.REQUIRED' | translate }}</div>
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">{{ 'LOCATION_MANAGEMENT.CLASSROOM_LABEL' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">meeting_room</mat-icon></span>
+        <input type="text" class="form-control shadow-none" 
+               formControlName="classroom" [placeholder]="'LOCATION_MANAGEMENT.CLASSROOM_PLACEHOLDER' | translate"
+               [class.is-invalid]="locationForm.get('classroom')?.invalid && locationForm.get('classroom')?.touched">
+      </div>
+      @if (locationForm.get('classroom')?.hasError('required') && locationForm.get('classroom')?.touched) {
+        <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.REQUIRED' | translate }}</div>
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">{{ 'LOCATION_MANAGEMENT.CAPACITY_LABEL' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">groups</mat-icon></span>
+        <input type="number" class="form-control shadow-none" 
+               formControlName="capacity" min="1"
+               [class.is-invalid]="locationForm.get('capacity')?.invalid && locationForm.get('capacity')?.touched">
+      </div>
+      @if (locationForm.get('capacity')?.touched) {
+        @if (locationForm.get('capacity')?.hasError('required')) {
+          <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.REQUIRED' | translate }}</div>
+        } @else if (locationForm.get('capacity')?.hasError('min')) {
+          <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.MIN_VALUE' | translate }}</div>
+        }
+      }
+    </div>
+
+    <div class="col-md-12 d-flex align-items-center pb-2">
+      <div class="form-check form-switch ps-5">
+        <input class="form-check-input shadow-none" type="checkbox" id="locationActiveSwitch" formControlName="isActive">
+        <label class="form-check-label fw-bold ms-2" for="locationActiveSwitch" style="color: var(--main-color);">
+          {{ 'LOCATION_MANAGEMENT.STATUS_LABEL' | translate }}
+        </label>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="modal-footer d-flex justify-content-end gap-2">
+  <button type="button" class="btn btn-cancel px-4 py-2 fw-medium rounded-3" (click)="onCancel()">
+    {{ 'COMMON.CANCEL' | translate }}
+  </button>
+  <button type="button" class="btn btn-submit px-5 py-2 fw-bold rounded-3 shadow-sm" (click)="onSubmit()" [disabled]="locationForm.invalid">
+    {{ isEditMode ? ('COMMON.SAVE' | translate) : ('COMMON.ADD' | translate) }}
+  </button>
+</div>

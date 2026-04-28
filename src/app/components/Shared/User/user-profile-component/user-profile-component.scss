@@ -1,0 +1,48 @@
+.personalInfo
+{
+   padding: 20px;
+    border-radius: 5px;
+    border: .5px solid #e4e7ec;
+    margin: 20px;
+    color: var(--head-color);
+}
+.head
+{
+    display: flex;
+    justify-content: space-between;
+}
+.editBtn
+{
+    color: var(--main-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    width:100px;
+    border: .5px solid #e4e7ec;
+    padding: 10px 20px;
+    border-radius: 45%;
+}
+p{
+    font-weight: bold;
+color:var(--main-color)
+}
+.title{
+    color:var(--main-other-color);
+    font-size: large;
+    font-weight: 600;
+}
+.body
+{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+}
+.barCode
+{
+padding: 20px;
+    border-radius: 5px;
+    border: .5px solid #e4e7ec;
+    margin: 20px;
+    color: var(--head-color);;
+}

@@ -1,0 +1,15 @@
+<div class="confirm-dialog">
+  <div class="dialog-header">
+   
+    <button class="close-btn" (click)="closeDialog()" aria-label="Close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div class="dialog-content">
+    <span class="message">{{ message }}</span>
+  </div>
+  <div class="dialog-actions">
+   
+    <button class="cancel-btn" (click)="closeDialog()">Close</button>
+  </div>
+</div>

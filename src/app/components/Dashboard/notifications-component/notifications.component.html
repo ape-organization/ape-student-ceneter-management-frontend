@@ -1,0 +1,55 @@
+<!-- <button mat-icon-button [matMenuTriggerFor]="menu">
+  <mat-icon [matBadge]="(unreadCount$ | async) || 0" matBadgeColor="warn" 
+  matBadgeSize="small">notifications</mat-icon>
+</button> -->
+
+
+
+<div class="pr-2"
+        [matMenuTriggerFor]="menu"
+        [matBadge]="(unreadCount$ | async)"
+        matBadgeColor="warn"
+        matBadgeSize="medium"   
+        matBadgeOverlap="false">
+  <mat-icon class="icon">notifications</mat-icon>
+</div>
+
+
+
+<mat-menu #menu="matMenu" class="notifications-menu" xPosition="before"
+style="background-color: red;"
+>
+  <div class="notifications-header" (click)="$event.stopPropagation()">
+    <h3>Notifications</h3>
+    <button mat-button color="primary" (click)="onMarkAllAsRead($event)"
+     *ngIf="(unreadCount$ | async)! > 0">Mark all as read</button>
+  </div>
+
+  <div class="notifications-list">
+    <ng-container *ngIf="(notifications$ | async) as notifications; else loading">
+      <ng-container *ngIf="notifications.length > 0; else noNotifications">
+        <mat-list>
+          <mat-list-item
+            *ngFor="let notification of notifications"
+            (click)="onNotificationClick(notification)"
+            [class.unread]="!notification.read"
+            [routerLink]="notification.link">
+            <mat-icon matListItemIcon>{{ getIcon(notification.type) }}</mat-icon>
+            <div matListItemTitle>{{ notification.title }}</div>
+            <div matListItemLine>{{ notification.message }}</div>
+            <div matListItemMeta>{{ notification.date | date:'short' }}</div>
+          </mat-list-item>
+        </mat-list>
+      </ng-container>
+    </ng-container>
+  </div>
+  <ng-template #noNotifications>
+    <div class="no-notifications">
+      <mat-icon>notifications_off</mat-icon>
+      <p>No new notifications</p>
+    </div>
+  </ng-template>
+  <ng-template #loading>
+    <div class="loading-spinner"><mat-spinner diameter="40"></mat-spinner></div>
+  </ng-template>
+</mat-menu>

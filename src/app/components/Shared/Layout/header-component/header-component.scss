@@ -1,0 +1,308 @@
+/* User menu styled like language dropdown */
+.user-menu {
+  position: relative;
+  z-index: 110;
+  min-width: 160px;
+  background: transparent;
+  border-left: .2px solid #e4e7ec;
+}
+.notifications {
+  border-right: 1px solid #e4e7ec;
+  padding: 0 15px;
+}
+.darkTheme
+{
+    color:var(--main-black-color);
+padding: 15px;
+align-items: center;
+display: flex;
+justify-content: center;
+    border-radius: 10%;
+    border: 1px solid #e4e7ec;
+}
+.user-menu .user-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 18px;
+  border-radius: 12px;
+  //background: #fff;
+ // box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  min-width: 160px;
+  cursor: pointer;
+  transition: box-shadow 0.18s, background 0.18s;
+  //border: 1px solid #e4e7ec;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #333;
+}
+.user-menu .user-info:hover,
+.user-menu .user-info:focus {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  background: #f8fafc;
+}
+.user-menu .user-info i {
+  margin-left: 8px;
+  font-size: 1.1rem;
+  transition: transform 0.2s;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+}
+.user-menu .dropdown {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  min-width: 180px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 1.5px 6px rgba(0,0,0,0.07);
+  border: 1px solid #e4e7ec;
+  overflow: hidden;
+  padding: 6px 0;
+  z-index: 2000;
+  animation: fadeIn 0.18s;
+  transition: box-shadow 0.18s, border 0.18s;
+}
+.user-menu .dropdown-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  transition: background 0.18s, color 0.18s;
+  cursor: pointer;
+  outline: none;
+  margin: 0;
+  border-radius: 8px;
+}
+.user-menu .dropdown-item:hover,
+.user-menu .dropdown-item:focus {
+  background: #f0f4fa;
+  color: #1E1A4D;
+}
+
+/* Modern, clean header */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 24px;
+  width: 100%;
+  height: 64px;
+  min-height: 64px;
+  max-height: 64px;
+  gap: 18px;
+/*   background: var(--header-color, #fff);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-radius: 0 0 18px 18px; */
+  z-index: 100;
+  position: relative;
+}
+  .absolute {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    left: 0;
+    min-width: 100%;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 1.5px 6px rgba(0,0,0,0.07);
+    border: 1px solid #e4e7ec;
+    overflow: hidden;
+    padding: 6px 0;
+    z-index: 2000;
+    animation: fadeIn 0.18s;
+    transition: box-shadow 0.18s, border 0.18s;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .absolute button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 12px 20px;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    transition: background 0.18s, color 0.18s;
+    cursor: pointer;
+    outline: none;
+    margin: 0;
+    border-radius: 8px;
+    gap: 10px;
+    position: relative;
+  }
+  .absolute button:hover, .absolute button:focus {
+    background: #f0f4fa;
+    color: #1E1A4D;
+  }
+  .absolute button.selected {
+    background: #e6f0ff;
+    color: #1E1A4D;
+  }
+  .absolute button > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1 1 auto;
+  }
+  .absolute .text-blue-500 {
+    color: #3b82f6 !important;
+    margin-left: 8px;
+    font-size: 1.2em;
+  }
+  .text-blue-500 {
+    color: #3b82f6 !important;
+  }
+
+/* .language-dropdown {
+  position: relative;
+  width: fit-content;
+  z-index: 110;
+  min-width: 140px;
+
+  > div {
+    display: flex !important;
+    align-items: center;
+    gap: 10px;
+    min-width: 140px;
+  }
+  img {
+    border-radius: 3px;
+    width: 22px;
+    height: 15px;
+    object-fit: cover;
+    margin-right: 8px;
+  }
+  .mat-icon {
+    margin-left: 4px;
+    font-size: 1.3rem;
+    transition: transform 0.2s;
+    vertical-align: middle;
+    display: inline-flex;
+    align-items: center;
+  }
+} */
+
+
+
+.language-dropdown {
+  position: relative;
+  z-index: 110;
+  min-width: 160px;
+  background: transparent;
+}
+
+.language-dropdown > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 18px;
+  border-radius: 12px;
+  //background: #fff;
+  //box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  min-width: 160px;
+  cursor: pointer;
+  transition: box-shadow 0.18s, background 0.18s;
+  border: 1px solid #e4e7ec;
+}
+.language-dropdown > div:first-child:hover,
+.language-dropdown > div:first-child:focus {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  background: #f8fafc;
+}
+.language-dropdown img {
+  border-radius: 3px;
+  width: 22px;
+  height: 15px;
+  object-fit: cover;
+  margin-right: 8px;
+}
+.language-dropdown .mat-icon {
+  margin-left: 4px;
+  font-size: 1.3rem;
+  transition: transform 0.2s;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+}
+.language-dropdown .rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* Dropdown menu */
+.language-dropdown .absolute {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  min-width: 180px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13), 0 1.5px 6px rgba(0,0,0,0.07);
+  border: 1px solid #e4e7ec;
+  overflow: hidden;
+  padding: 6px 0;
+  z-index: 2000;
+  animation: fadeIn 0.18s;
+  transition: box-shadow 0.18s, border 0.18s;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.language-dropdown .absolute button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  transition: background 0.18s, color 0.18s;
+  cursor: pointer;
+  outline: none;
+  margin: 0;
+  border-radius: 8px;
+  gap: 10px;
+  position: relative;
+}
+.language-dropdown .absolute button:hover,
+.language-dropdown .absolute button:focus {
+  background: #f0f4fa;
+  color: #1E1A4D;
+}
+.language-dropdown .absolute button.selected {
+  background: #e6f0ff;
+  color: #1E1A4D;
+}
+.language-dropdown .absolute button > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 auto;
+}
+.language-dropdown .absolute .text-blue-500 {
+  color: #3b82f6 !important;
+  margin-left: 8px;
+  font-size: 1.2em;
+}
+.language-dropdown .text-blue-500 {
+  color: #3b82f6 !important;
+}
+

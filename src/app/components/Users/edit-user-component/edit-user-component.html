@@ -1,0 +1,34 @@
+<div class="container p-4"  style="background-color: var(--background-white-color);">
+    <div class="mb-2">
+       <p style="font-size: large;color:var(--main-black-color)">Edit Personal Information</p> 
+<p style="font-size: small;color:var(--main-color)">Update your details to keep your profile up-to-date</p>
+    </div>
+<div class="row" >
+<div class=" col-lg-6 col-md-12 col-xs-12 mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Name</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="John Doe">
+</div>
+<div class="col-lg-6 col-md-12 col-xs-12 mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" 
+ 
+  placeholder="+20123456789">
+</div>
+</div>
+<div class="row">
+<div class="col-lg-6 col-md-12 col-xs-12 mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+</div>
+</div>
+<div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-light m-2"
+    (click)="close()"
+    >Close</button>
+<button type="button" class="btn  m-2"
+style="background-color: var(--button-submit-color);
+color:var(--main-white-color);
+"
+>Save Changes</button>
+</div>
+</div>

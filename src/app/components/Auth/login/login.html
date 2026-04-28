@@ -1,0 +1,117 @@
+<div class="all">
+
+<!-- div class="logo">
+        <img src="../../../assets/images/logo.png" 
+        
+        alt="Logo" class="logo-image">
+
+ <p> Center</p>
+</div> -->
+<div class="login-container">
+  <mat-card class="login-card">
+    <mat-card-header class="header">
+      <mat-card-title >Login</mat-card-title>
+<!--    <a (click)="goToRegister()" class="link-button">Don't have an account?</a>
+ -->
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email -->
+  <div class="form-group mb-3">
+    <label for="email">Email address</label>
+    <input
+      type="email"
+      id="email"
+      class="form-control"
+      formControlName="email"
+      placeholder="Enter email"
+      [ngClass]="{'is-invalid': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}"
+    >
+    <div>
+ <!-- <small class="form-text text-muted">
+      We'll never share your email with anyone else.
+    </small> -->
+    </div>
+   
+
+    <mat-error *ngIf="loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
+      Email is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('email')?.hasError('email') && !loginForm.get('email')?.hasError('required') && loginForm.get('email')?.touched">
+      Please enter a valid email address
+    </mat-error>
+  </div>
+
+  <!-- Password -->
+  <div class="form-group mb-3">
+    <label for="password">Password</label>
+    <div class="input-group">
+      <input
+        [type]="hidePassword ? 'password' : 'text'"
+        id="password"
+        class="form-control"
+        formControlName="password"
+        placeholder="Password"
+        [ngClass]="{'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}"
+      >
+      <button
+        type="button"
+        class="btn btn-outline-secondary "
+        (click)="hidePassword = !hidePassword"
+        tabindex="-1"
+      >
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    </div>
+
+    <mat-error *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+      Password is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched">
+      Password must be at least 6 characters
+    </mat-error>
+  </div>
+       <!--  <mat-form-field appearance="outline" class="full-width"
+        >
+          <mat-label >Email</mat-label>
+          <input matInput formControlName="email" type="email" 
+          placeholder="Enter your email" required 
+         
+          />
+          @if (loginForm.get('email')?.hasError('email') && !loginForm.get('email')?.hasError('required')) {
+            <mat-error >Please enter a valid email address</mat-error>
+          }
+          @if (loginForm.get('email')?.hasError('required')) {
+            <mat-error>Email is <strong>required</strong></mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password" placeholder="Enter your password" required />
+          @if (loginForm.get('password')?.hasError('required')) {
+            <mat-error>Password is <strong>required</strong></mat-error>
+          }
+          @if (loginForm.get('password')?.hasError('minlength')) {
+            <mat-error>Password must be at least 6 characters</mat-error>
+          }
+        </mat-form-field> -->
+<!--[disabled]="loginForm.invalid"-->
+      <div class="form-group mb-3 mt-5">
+          <button 
+      [disabled]="loginForm.invalid"
+          type="submit" 
+          class=" btn saveBtn"
+          >
+            Login
+          </button>
+        </div>
+      </form>
+      
+       <div class="signup-link">
+        <p>Forget Password ?</p>
+      </div> 
+    </mat-card-content>
+  </mat-card>
+</div>
+</div>

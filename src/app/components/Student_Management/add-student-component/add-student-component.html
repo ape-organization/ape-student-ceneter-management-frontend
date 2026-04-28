@@ -1,0 +1,113 @@
+<div class="modal-header">
+  <h4 class="modal-title">
+    {{ isEditMode ? ('STUDENT_MANAGEMENT.EDIT_STUDENT' | translate) : ('STUDENT_MANAGEMENT.ADD_STUDENT' | translate) }}
+  </h4>
+  <button type="button" class="btn btn-cancel shadow-none" (click)="onCancel()" aria-label="Close">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<form [formGroup]="studentForm" class="container">
+  <div class="row g-4 pb-2" style="background-color: var(--background-white-color);">
+    <div class="col-md-12">
+      <label class="form-label">{{ 'STUDENT_MANAGEMENT.NAME' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">person</mat-icon></span>
+        <input type="text" class="form-control shadow-none" 
+               formControlName="name" [placeholder]="'STUDENT_MANAGEMENT.NAME' | translate"
+               [class.is-invalid]="studentForm.get('name')?.invalid && studentForm.get('name')?.touched">
+      </div>
+      @if (studentForm.get('name')?.hasError('required') && studentForm.get('name')?.touched) {
+        <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.NAME_REQUIRED' | translate }}</div>
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">{{ 'STUDENT_MANAGEMENT.PHONE' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">phone</mat-icon></span>
+        <input type="tel" class="form-control shadow-none" 
+               formControlName="phone" placeholder="0123456789"
+               [class.is-invalid]="studentForm.get('phone')?.invalid && studentForm.get('phone')?.touched">
+      </div>
+      @if (studentForm.get('phone')?.touched) {
+        @if (studentForm.get('phone')?.hasError('required')) {
+          <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.REQUIRED' | translate }}</div>
+        } @else if (studentForm.get('phone')?.hasError('pattern')) {
+          <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.INVALID_PHONE' | translate }}</div>
+        }
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">{{ 'STUDENT_MANAGEMENT.PARENT_PHONE' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">supervisor_account</mat-icon></span>
+        <input type="tel" class="form-control shadow-none" 
+               formControlName="parentPhone" placeholder="0123456789"
+               [class.is-invalid]="studentForm.get('parentPhone')?.invalid && studentForm.get('parentPhone')?.touched">
+      </div>
+      @if (studentForm.get('parentPhone')?.touched) {
+        @if (studentForm.get('parentPhone')?.hasError('required')) {
+          <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.REQUIRED' | translate }}</div>
+        } @else if (studentForm.get('parentPhone')?.hasError('pattern')) {
+          <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.PHONE_INVALID' | translate }}</div>
+        }
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">{{ 'STUDENT_MANAGEMENT.GRADE' | translate }}</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">school</mat-icon></span>
+        <select class="form-select shadow-none" formControlName="grade"
+                [class.is-invalid]="studentForm.get('grade')?.invalid && studentForm.get('grade')?.touched">
+          <option value="" disabled>{{ 'STUDENT_MANAGEMENT.GRADE' | translate }}</option>
+          @for (grade of grades; track grade) {
+            <option [value]="grade">{{ grade | translate }}</option>
+          }
+        </select>
+      </div>
+      @if (studentForm.get('grade')?.hasError('required') && studentForm.get('grade')?.touched) {
+        <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.GRADE_REQUIRED' | translate }}</div>
+      }
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">{{ 'STUDENT_MANAGEMENT.DISCOUNT' | translate }} (%)</label>
+      <div class="input-group">
+        <span class="input-group-text"><mat-icon class="fs-5">percent</mat-icon></span>
+        <input type="number" class="form-control shadow-none" 
+               formControlName="discount" min="0" max="100"
+               [class.is-invalid]="studentForm.get('discount')?.invalid && studentForm.get('discount')?.touched">
+      </div>
+      @if (studentForm.get('discount')?.touched) {
+        @if (studentForm.get('discount')?.touched) {
+          @if (studentForm.get('discount')?.hasError('required')) {
+            <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.DISCOUNT_REQUIRED' | translate }}</div>
+          } @else if (studentForm.get('discount')?.hasError('min') || studentForm.get('discount')?.hasError('max')) {
+            <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.DISCOUNT_INVALID' | translate }}</div>
+          }
+        }
+      }
+    </div>
+
+    <div class="col-md-6 d-flex align-items-end pb-2">
+      <div class="form-check form-switch ps-5">
+        <input class="form-check-input shadow-none" type="checkbox" id="isActiveSwitch" formControlName="isActive">
+        <label class="form-check-label fw-bold ms-2" for="isActiveSwitch" style="color: var(--main-color);">
+          {{ 'STUDENT_MANAGEMENT.STATUS' | translate }}
+        </label>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="modal-footer d-flex justify-content-end gap-2">
+  <button type="button" class="btn btn-cancel px-4 py-2 fw-medium rounded-3" (click)="onCancel()">
+    {{ 'COMMON.CANCEL' | translate }}
+  </button>
+  <button type="button" class="btn btn-submit px-5 py-2 fw-bold rounded-3 shadow-sm" (click)="onSubmit()" [disabled]="studentForm.invalid">
+    {{ isEditMode ? ('COMMON.SAVE_CHANGES' | translate) : ('COMMON.ADD' | translate) }}
+  </button>
+</div>

@@ -1,0 +1,33 @@
+.title
+{
+    width: 180px;margin: 5px;
+    font-size: 15px;
+    margin-left: 10px;
+    font-weight:bold;
+}
+.headContainer
+{
+  
+    display: flex; justify-content: space-between; 
+    align-items: center;
+    padding: 7px;
+    margin: 4px;
+    cursor: pointer;
+}
+.headContainer:hover {
+  background-color: rgba(0, 0, 255, 0.1); /* light hover */
+  border-radius: 10px;
+}
+
+.headContainer.selected {
+     border-radius: 10px;
+  //background-color: var(--sidenav-hovor-color); /* blue background */
+  background-color:var( --main-content-color);
+  color: var(--sidenav-selected-color); /* text & icon white */
+}
+.icon
+{
+  //color:var(--sidenav-icon-color)
+  color:var(--sidenav-icon-color);
+  width: 30px;
+}

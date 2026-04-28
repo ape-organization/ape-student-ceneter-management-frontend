@@ -1,0 +1,127 @@
+
+ <div class="modal-header ">
+  <h4 class="modal-title">
+    {{ isEditMode ? ('TEACHER_MANAGEMENT.EDIT_TEACHER' | translate) : ('TEACHER_MANAGEMENT.ADD_TEACHER' | translate) }}
+  </h4>
+  <button type="button"
+        class="btn btn-cancel shadow-none "
+        (click)="onCancel()"
+        aria-label="Close">
+  <mat-icon>close</mat-icon>
+</button>
+</div>
+
+  <form [formGroup]="teacherForm" class="container  ">
+    <div class="row g-4 pb-2" style="background-color: var(--background-white-color);">
+      <div class="col-md-12">
+        <label class="form-label">{{ 'TEACHER_MANAGEMENT.NAME' | translate }}</label>
+        <div class="input-group">
+          <span class="input-group-text"><mat-icon class="fs-5">person</mat-icon></span>
+          <input type="text" class="form-control shadow-none" 
+                 formControlName="name" [placeholder]="'TEACHER_MANAGEMENT.NAME' | translate"
+                 [class.is-invalid]="teacherForm.get('name')?.invalid && teacherForm.get('name')?.touched">
+        </div>
+        @if (teacherForm.get('name')?.hasError('required') && teacherForm.get('name')?.touched) {
+          <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.NAME_REQUIRED' | translate }}</div>
+        }
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">{{ 'TEACHER_MANAGEMENT.PHONE' | translate }}</label>
+        <div class="input-group">
+          <span class="input-group-text"><mat-icon class="fs-5">phone</mat-icon></span>
+          <input type="tel" class="form-control shadow-none" 
+                 formControlName="phone" placeholder="0123456789"
+                 [class.is-invalid]="teacherForm.get('phone')?.invalid && teacherForm.get('phone')?.touched">
+        </div>
+        @if (teacherForm.get('phone')?.touched) {
+          @if (teacherForm.get('phone')?.hasError('required')) {
+            <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.REQUIRED' | translate }}</div>
+          } @else if (teacherForm.get('phone')?.hasError('pattern')) {
+            <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.PHONE_INVALID' | translate }}</div>
+          }
+        }
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">{{ 'TEACHER_MANAGEMENT.EMAIL' | translate }}</label>
+        <div class="input-group">
+          <span class="input-group-text"><mat-icon class="fs-5">email</mat-icon></span>
+          <input type="email" class="form-control shadow-none" 
+                 formControlName="email" placeholder="example@email.com"
+                 [class.is-invalid]="teacherForm.get('email')?.invalid && teacherForm.get('email')?.touched">
+        </div>
+        @if (teacherForm.get('email')?.hasError('email') && teacherForm.get('email')?.touched) {
+          <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.INVALID_EMAIL' | translate }}</div>
+        }
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">{{ 'TEACHER_MANAGEMENT.SUBJECT' | translate }}</label>
+        <div class="input-group">
+          <span class="input-group-text"><mat-icon class="fs-5">book</mat-icon></span>
+          <select class="form-select shadow-none" formControlName="subject"
+                  [class.is-invalid]="teacherForm.get('subject')?.invalid && teacherForm.get('subject')?.touched">
+            <option value="" disabled>{{ 'TEACHER_MANAGEMENT.SUBJECT' | translate }}</option>
+            @for (subject of subjects; track subject) {
+              <option [value]="subject">{{ subject | translate }}</option>
+            }
+          </select>
+        </div>
+        @if (teacherForm.get('subject')?.hasError('required') && teacherForm.get('subject')?.touched) {
+          <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.REQUIRED' | translate }}</div>
+        }
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">{{ 'TEACHER_MANAGEMENT.PAYMENT_METHOD' | translate }}</label>
+        <div class="input-group">
+          <span class="input-group-text"><mat-icon class="fs-5">payment</mat-icon></span>
+          <select class="form-select shadow-none" formControlName="paymentMethod"
+                  [class.is-invalid]="teacherForm.get('paymentMethod')?.invalid && teacherForm.get('paymentMethod')?.touched">
+            <option value="total">{{ 'COMMON.TOTAL' | translate }}</option>
+            <option value="monthly">{{ 'COMMON.MONTHLY' | translate }}</option>
+            <option value="hourly">{{ 'COMMON.HOURLY' | translate }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">{{ 'TEACHER_MANAGEMENT.SALARY' | translate }}</label>
+        <div class="input-group">
+          <span class="input-group-text"><mat-icon class="fs-5">payments</mat-icon></span>
+          <input type="number" class="form-control shadow-none" 
+                 formControlName="salary" min="0"
+                 [class.is-invalid]="teacherForm.get('salary')?.invalid && teacherForm.get('salary')?.touched">
+        </div>
+        @if (teacherForm.get('salary')?.touched) {
+          @if (teacherForm.get('salary')?.hasError('required')) {
+            <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.REQUIRED' | translate }}</div>
+          } @else if (teacherForm.get('salary')?.hasError('min')) {
+            <div class="invalid-feedback d-block small mt-1">{{ 'VALIDATION.SALARY_MIN' | translate }}</div>
+          }
+        }
+      </div>
+
+      <div class="col-md-6 d-flex align-items-end pb-2">
+        <div class="form-check form-switch ps-5">
+          <input class="form-check-input shadow-none" type="checkbox" id="isActiveSwitch" formControlName="isActive">
+          <label class="form-check-label fw-bold ms-2" for="isActiveSwitch" style="color: var(--main-color);">
+            {{ 'TEACHER_MANAGEMENT.ACTIVE' | translate }}
+          </label>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+<div class="modal-footer d-flex justify-content-end gap-2">
+  <button type="button" class="btn btn-cancel px-4 py-2 fw-medium rounded-3 "
+  
+  (click)="onCancel()">
+    {{ 'COMMON.CANCEL' | translate }}
+  </button>
+  <button type="button" class="btn btn-submit px-5 py-2 fw-bold rounded-3 shadow-sm" (click)="onSubmit()" [disabled]="teacherForm.invalid">
+    {{ isEditMode ? ('COMMON.SAVE_CHANGES' | translate) : ('COMMON.ADD' | translate) }}
+  </button>
+</div> 

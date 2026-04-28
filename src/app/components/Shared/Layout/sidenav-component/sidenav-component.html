@@ -1,0 +1,161 @@
+ <mat-nav-list>
+  <div class="container">
+      <div mat-list-item class="headContainer" 
+        [class.selected]="selectedItem === 'dashboard'"
+        (click)="selectItem('dashboard')"
+      >
+        <mat-icon class="icon">home</mat-icon>
+        <p class="title">{{ 'SIDE_NAV.DASHBOARD' | translate }}</p>
+         <mat-icon class="icon" style="margin-left: auto; font-size: 20px;
+         cursor: pointer;"
+         (click)="refreshPage('dashboard')">
+      refresh
+    </mat-icon>
+      </div>
+
+  <div mat-list-item class="headContainer" (click)="isAttendanceExpanded = !isAttendanceExpanded" style="cursor: pointer;">
+    <mat-icon class="icon">assignment_ind</mat-icon>
+    <p class="title">Attendance</p>
+    <mat-icon class="icon" style="margin-left: auto; font-size: 20px;">
+      {{ isAttendanceExpanded ? 'expand_less' : 'expand_more' }}
+    </mat-icon>
+  </div>
+
+  <div *ngIf="isAttendanceExpanded" class="submenu-container">
+    <div mat-list-item class="headContainer"
+         [class.selected]="selectedItem === 'Scan_Attendance'"
+         (click)="selectItem('Scan_Attendance')"
+         style="padding-left: 25px;"
+    >
+          <mat-icon class="icon">settings_overscan</mat-icon>
+          <p class="title">{{ 'SIDE_NAV.SCAN_ATTENDANCE' | translate }}</p>
+            <mat-icon class="icon" style="margin-left: auto; font-size: 20px;
+             cursor: pointer;"
+            (click)="refreshPage('Scan_Attendance')">
+      refresh
+    </mat-icon>
+    </div>
+  </div>
+
+      <div mat-list-item class="headContainer"
+       [class.selected]="selectedItem === 'Teachers_Management'"
+       (click)="selectItem('Teachers_Management')"
+      >
+        <mat-icon class="icon">group</mat-icon>
+        <p class="title">{{ 'SIDE_NAV.TEACHERS_MANAGEMENT' | translate }}</p>
+          <mat-icon class="icon" style="margin-left: auto; font-size: 20px;
+           cursor: pointer;"
+          (click)="refreshPage('Teachers_Management')">
+      refresh
+    </mat-icon>
+      </div>
+       <div mat-list-item class="headContainer"
+       [class.selected]="selectedItem === 'Location_Management'"
+       (click)="selectItem('Location_Management')"
+      >
+        <mat-icon class="icon">place</mat-icon>
+        <p class="title">{{ 'SIDE_NAV.LOCATION_MANAGEMENT' | translate }}</p>
+          <mat-icon class="icon" style="margin-left: auto; font-size: 20px;
+           cursor: pointer;"
+          (click)="refreshPage('Location_Management')"
+          >
+      refresh
+    </mat-icon>
+      </div>
+       <div mat-list-item class="headContainer"
+       [class.selected]="selectedItem === 'Subject_Management'"
+       (click)="selectItem('Subject_Management')"
+      >
+        <mat-icon class="icon">book</mat-icon>
+        <p class="title">{{ 'SIDE_NAV.SUBJECT_MANAGEMENT' | translate }}</p>
+          <mat-icon class="icon" style="margin-left: auto; font-size: 20px;
+           cursor: pointer;"
+          (click)="refreshPage('Subject_Management')"
+          >
+      refresh
+    </mat-icon>
+      </div>
+      
+       <div mat-list-item class="headContainer"
+       [class.selected]="selectedItem === 'Class_Management'"
+       (click)="selectItem('Class_Management')"
+      >
+        <mat-icon class="icon">book</mat-icon>
+        <p class="title">{{ 'SIDE_NAV.CLASS_MANAGEMENT' | translate }}</p>
+          <mat-icon class="icon" style="margin-left: auto; font-size: 20px;
+           cursor: pointer;"
+          (click)="refreshPage('Class_Management')"
+          >
+      refresh
+    </mat-icon>
+      </div>
+       <div mat-list-item class="headContainer"
+       [class.selected]="selectedItem === 'Student_Management'"
+       (click)="selectItem('Student_Management')"
+      >
+        <mat-icon class="icon">people</mat-icon>
+        <p class="title">{{ 'SIDE_NAV.STUDENT_MANAGEMENT' | translate }}</p>
+          <mat-icon class="icon" style="margin-left: auto; font-size: 20px;
+           cursor: pointer;"
+          (click)="refreshPage('Student_Management')"
+          >
+      refresh
+    </mat-icon>
+      </div>
+    <div mat-list-item class="headContainer"
+      [class.selected]="selectedItem === 'barcode_management'"
+      (click)="selectItem('barcode_management')"
+    >
+        <mat-icon class="icon">question_answer</mat-icon>
+        <p class="title">{{ 'SIDE_NAV.BARCODE_MANAGEMENT' | translate }}</p>
+          <mat-icon class="icon" style="margin-left: auto; font-size: 20px;
+           cursor: pointer;"
+          (click)="refreshPage('barcode_management')"
+          >
+      refresh
+    </mat-icon>
+      </div>
+
+  <div mat-list-item class="headContainer" (click)="isMessagesExpanded = !isMessagesExpanded" style="cursor: pointer;">
+    <mat-icon class="icon">message</mat-icon>
+    <p class="title">Messages</p>
+    <mat-icon class="icon" style="margin-left: auto; font-size: 20px;">
+      {{ isMessagesExpanded ? 'expand_less' : 'expand_more' }}
+    </mat-icon>
+  </div>
+
+  <div *ngIf="isMessagesExpanded" class="submenu-container">
+    <div mat-list-item class="headContainer"
+      [class.selected]="selectedItem === 'SMS_Center'"
+      (click)="selectItem('SMS_Center')"
+      style="padding-left: 25px;"
+    >
+        <mat-icon class="icon">sms</mat-icon>
+        <p class="title">{{ 'SIDE_NAV.SMS_CENTER' | translate }}</p>
+          <mat-icon class="icon" style="margin-left: auto; font-size: 20px;
+           cursor: pointer;"
+          (click)="refreshPage('SMS_Center')"
+          >
+      refresh
+    </mat-icon>
+    </div>
+    <div mat-list-item class="headContainer"
+      [class.selected]="selectedItem === 'Whatsapp_Center'"
+      (click)="selectItem('Whatsapp_Center')"
+      style="padding-left: 25px;"
+    >
+        <mat-icon class="icon" style="color: #25D366;">whatsapp</mat-icon>
+        <p class="title">{{ 'SIDE_NAV.WHATSAPP_CENTER' | translate }}</p>
+          <mat-icon class="icon" style="margin-left: auto; font-size: 20px;
+           cursor: pointer;"
+          (click)="refreshPage('Whatsapp_Center')"
+          
+          >
+      refresh
+    </mat-icon>
+    </div>
+  </div>
+
+      
+  </div>
+</mat-nav-list>

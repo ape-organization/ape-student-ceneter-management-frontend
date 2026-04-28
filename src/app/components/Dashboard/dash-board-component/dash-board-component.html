@@ -1,0 +1,108 @@
+
+
+<div class="container row">
+  <div class="showcase col-lg-3 col-md-12 col-sm-12">
+    <div class="icon">
+      <mat-icon>people_outline</mat-icon>
+    </div>
+    <p class="title">{{ 'DASHBOARD.TOTAL_STUDENT' | translate }}</p>
+    <div style="display: flex;justify-content: space-between;">
+      <h3 class="value">1000</h3>
+      <mat-icon style="color:darkgreen">info</mat-icon>
+    </div>
+  </div>
+
+  <div class="showcase col-lg-3 col-md-12 col-sm-12">
+    <div class="icon">
+      <mat-icon style="color:orange">class</mat-icon>
+    </div>
+    <p class="title">{{ 'DASHBOARD.TODAY_CLASSES' | translate }}</p>
+    <div style="display: flex;justify-content: space-between;">
+      <h3 class="value">1000</h3>
+      <mat-icon style="color:darkblue">info</mat-icon>
+    </div>
+  </div>
+
+  <div class="showcase col-lg-4 col-md-12 col-sm-12">
+    <div class="icon">
+      <mat-icon style="color:darkblue">payment</mat-icon>
+    </div>
+    <p class="title">{{ 'DASHBOARD.TODAY_PAYMENT' | translate }}</p>
+    <div style="display: flex;justify-content: space-between;">
+      <h3 class="value">1000</h3>
+      <mat-icon style="color:darkgoldenrod">info</mat-icon>
+    </div>
+  </div>
+
+  
+   
+</div>
+<div class="container row">
+<div class="showcase col-lg-5 col-md-12 col-sm-12">
+    <div class="icon">
+      <mat-icon style="color:rebeccapurple">message</mat-icon>
+    </div>
+    <p class="title">SMS Sent Today</p>
+    <div style="display: flex;justify-content: space-between;">
+      <h3 class="value">{{ smsSentCount }}</h3>
+      <mat-icon style="color:rebeccapurple">info</mat-icon>
+    </div>
+  </div>
+
+</div>
+<div class="container row mt-4">
+
+ <div class="chart-container col-lg-6 col-md-6 col-sm-12">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ 'DASHBOARD.ATTENDANCE_RATE' | translate }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="chart-wrapper">
+          <canvas baseChart
+          
+                  [data]="attendanceChartData"
+                  [options]="attendanceChartOptions"
+                  [type]="'doughnut'">
+          </canvas>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="chart-container col-lg-6 col-md-6 col-sm-12">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ 'DASHBOARD.MONTHLY_PAYMENTS' | translate }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="chart-wrapper">
+          <canvas baseChart
+                  [data]="paymentsChartData"
+                  [options]="paymentsChartOptions"
+                  [type]="'bar'">
+          </canvas>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  
+</div>
+<div class="container row mt-4 d-flex justify-content-center">
+  <div class="chart-container col-lg-8 col-md-12 col-sm-12">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ 'DASHBOARD.STUDENT_GROWTH' | translate }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="chart-wrapper">
+          <canvas baseChart
+                  [data]="growthChartData"
+                  [options]="growthChartOptions"
+                  [type]="'line'">
+          </canvas>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

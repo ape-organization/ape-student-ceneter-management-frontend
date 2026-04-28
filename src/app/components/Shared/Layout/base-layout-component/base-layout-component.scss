@@ -1,0 +1,130 @@
+.sidenav-container {
+  height: 100vh;
+  width: 100%;
+}
+.menu
+{
+    color:var(--sidenav-background-color);
+padding: 10px;
+align-items: center;
+display: flex;
+justify-content: center;
+    border-radius: 10%;
+    border: 1px solid #e4e7ec;
+}
+/* Sidebar background and width */
+.sidenav {
+  background-color: var(--sidenav-background-color);
+ // background-color: var(--sidenav-color); /* dark blue sidebar */
+  color: var(--sidenav-font-color); /* text color */
+  border:1px solid #e4e7ec;
+  width: 300px; /* fixed width */
+}
+.icon
+{
+  color:var(--sidenav-background-color);
+}
+.head {
+  border-bottom:1px solid #e4e7ec;
+  background-color: var(--header-color);
+  display: flex;
+  justify-content: space-between;
+}
+/* Keep toolbar sticky */
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+/* Logo area */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 16px;
+  font-weight: bold;
+  font-size: large;
+  color: var(--title-color);
+}
+.logo-image
+{
+  width: 40px;
+  height: 40px;
+}
+
+
+
+/* Content area */
+/* Only vertical padding to avoid overlap with sidenav */
+.content {
+  min-height: calc(100vh - 64px);
+  box-sizing: border-box;
+  background-color: var(--main-content-color);
+}
+
+/* Optional: use .content-inner for spacing if needed */
+.content-inner {
+  padding: 20px;
+  
+}
+
+/* RTL support for content area */
+/* [dir="rtl"] .content-inner {
+  padding-right: 20px;
+  padding-left: 0;
+} */
+
+
+
+.toolbar-title {
+  margin-left: 10px;
+}
+/* toolbar default: horizontal layout */
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* important for responsive */
+  padding: 0 16px;
+  height: auto; /* allow it to grow on wrap */
+}
+
+/* left section */
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* right section */
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* logo image size */
+.logo-image {
+  width: 35px;
+  height: 35px;
+}
+
+/* title styling */
+.app-title {
+  font-weight: bold;
+  color: var(--head-color);
+}
+
+/* mobile: make header go to next row */
+@media (max-width: 991px) {
+  .toolbar-left, .toolbar-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .toolbar-right {
+    margin-top: 8px; /* spacing below menu/logo */
+  }
+}
