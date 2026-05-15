@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "@angular/build": "^21.1.4",
+    "@angular/animations": "^21.1.0",
     "@angular/cli": "^21.1.4",
     "@angular/compiler-cli": "^21.1.0",
     "@angular/material": "^21.2.0",
