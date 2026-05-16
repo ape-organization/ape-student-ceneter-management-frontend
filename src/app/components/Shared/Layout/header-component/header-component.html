@@ -1,15 +1,24 @@
 
 
-<div class="header">
- <div class="container d-flex justify-content-end notifications">
+<div class="row header ">
+  <div class="col-lg-3 col-md-3 col-s-12 ">
+    <div class="row ">
+ <div class="container 
+  col-lg-5 col-md-5 col-5 
+ d-flex justify-content-center notifications">
   <app-notifications></app-notifications>
 </div>
-  <div class="darkTheme" (click)="toggleDarkMode()">
+  <div class="col-lg-5 col-md-5 col-5 darkTheme " 
+  (click)="toggleDarkMode()">
     <i class="fa-regular" [class.fa-moon]="!darkMode" [class.fa-sun]="darkMode"></i>
   </div>
- 
+</div>
+ </div>
 <!------------>
-<div class="language-dropdown relative " >
+<div class="lang col-lg-4 col-md-4 col-12 ">
+
+<div class="
+language-dropdown relative " >
   <!-- Current Language Button -->
   <div
     class="flex items-center justify-between px-4 py-2 rounded-xl 
@@ -32,7 +41,8 @@
   <!-- Dropdown Menu -->
   <div
     *ngIf="dropdownOpen" 
-    class="absolute right-0 mt-1 w-44 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden z-50"
+    class="absolute right-0 mt-1 w-44 bg-white dark:bg-gray-800 rounded-xl shadow-lg 
+    border border-gray-200 dark:border-gray-700 overflow-hidden z-50"
   >
     <button
       *ngFor="let lang of languages"
@@ -48,18 +58,9 @@
     </button>
   </div>
 </div>
-
-
-
-
-
-
-  <!---------------->
-  <!-- <div class="language-toggle" (click)="toggleLanguage()" style="cursor: pointer; margin: 0 15px; font-weight: bold;">
-    <span>{{ 'LANGUAGE.TOGGLE' | translate }}</span>
-  </div> -->
-
-  <div class="user-menu" (click)="toggleMenu()">
+</div>
+<div class="user col-lg-4 col-md-4 col-12 ">
+  <div class="col-lg-5 col-md-5 col-s-12 user-menu " (click)="toggleMenu()">
 
     <div class="user-info">
       <span>{{username}}</span>
@@ -81,6 +82,6 @@
     </div>
 
   </div>
-
+</div>
 </div>
   

@@ -8,7 +8,7 @@
 }
 .notifications {
   border-right: 1px solid #e4e7ec;
-  padding: 0 15px;
+  padding: 0 30px;
 }
 .darkTheme
 {
@@ -306,3 +306,11 @@ justify-content: center;
   color: #3b82f6 !important;
 }
 
+@media (max-width: 768px) {
+  .user {
+    display: none;
+  }
+  .lang{
+    display: none;
+  }
+}

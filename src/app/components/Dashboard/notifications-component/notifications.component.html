@@ -4,8 +4,8 @@
 </button> -->
 
 
-
-<div class="pr-2"
+<div class="d-flex justify-content-center  p-2">
+<div class="pr-4"
         [matMenuTriggerFor]="menu"
         [matBadge]="(unreadCount$ | async)"
         matBadgeColor="warn"
@@ -13,7 +13,7 @@
         matBadgeOverlap="false">
   <mat-icon class="icon">notifications</mat-icon>
 </div>
-
+</div>
 
 
 <mat-menu #menu="matMenu" class="notifications-menu" xPosition="before"
