@@ -55,7 +55,13 @@
     grid-template-columns: 1fr;
   }
 }
-
+//allow childern to shrink 
+.content-grid > * {
+  min-width: 0;
+}
+.content-grid {
+  overflow-x: hidden;
+}
 // Common card styles
 .compose-card,
 .stats-card {

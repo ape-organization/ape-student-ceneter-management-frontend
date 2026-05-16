@@ -80,7 +80,13 @@
     grid-template-columns: 1fr;
   }
 }
-
+//allow childern to shrink 
+.content-grid > * {
+  min-width: 0;
+}
+.content-grid {
+  overflow-x: hidden;
+}
 .compose-card, .stats-card, .history-card, .whatsapp-qr-card {
   background-color: var(--main-white-color);
   border-radius: var(--card-border-radius);

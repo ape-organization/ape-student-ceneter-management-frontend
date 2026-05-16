@@ -126,7 +126,7 @@
       <mat-card-actions align="end">
         <button mat-button (click)="checkStatus()">Refresh Status</button>
         <button mat-raised-button class="send-btn whatsapp-btn" (click)="sendMessage()" [disabled]="!selectedRecipientType || messageBody.length === 0 || whatsappStatus !== 'online'">
-          <mat-icon>send</mat-icon> {{ isScheduled ? 'Schedule' : 'Send WhatsApp' }}
+          <mat-icon>send</mat-icon> {{ isScheduled ? 'Schedule' : 'Send ' }}
         </button>
       </mat-card-actions>
     </mat-card>
