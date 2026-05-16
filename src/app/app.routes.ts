@@ -11,6 +11,7 @@ import { StudentManagementComponent } from './components/Student_Management/stud
 import { CardGeneratorComponent } from './components/BarCode_Management/card-generator-component/card-generator-component';
 import { UserProfileComponent } from './components/Shared/User/user-profile-component/user-profile-component';
 import { SmsCenterComponent } from './components/Messages/SMS_Management/sms-center.component';
+import { SmsTemplatesComponent } from './components/Messages/sms-templates/sms-templates.component';
 import { WhatsappCenterComponent } from './components/Messages/Whatsapp_Management/whatsapp-center.component';
 import { ScanAttendanceComponent } from './components/Attendance/ScanAttendance_Management/scan-attendance.component';
 
@@ -26,6 +27,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: DashBoardComponent },
       { path: 'SMS_Center', component: SmsCenterComponent },
+      { path: 'SMS_Templates', component: SmsTemplatesComponent },
       { path: 'Whatsapp_Center', component: WhatsappCenterComponent },
       { path: 'Scan_Attendance', component: ScanAttendanceComponent },
       { path: 'barcode_management', component: CardGeneratorComponent },

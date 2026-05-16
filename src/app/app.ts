@@ -10,7 +10,7 @@ import { LanguageService } from './Services/language.service';
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('Center-Admin');
+  protected readonly title = signal('Center-Management');
  constructor(private languageService: LanguageService) {}
 
   ngOnInit() {

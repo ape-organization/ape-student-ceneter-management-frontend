@@ -84,26 +84,30 @@ mat-toolbar {
 }
 /* toolbar default: horizontal layout */
 .head {
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; /* important for responsive */
-  padding: 0 16px;
+ 
+  padding: 0 10px;
   height: auto; /* allow it to grow on wrap */
 }
 
 /* left section */
 .toolbar-left {
+  margin-top: 5px;
   display: flex;
   align-items: center;
-  gap: 10px;
+//  gap: 10px;
 }
 
 /* right section */
 .toolbar-right {
+  
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: end;
+  justify-content: flex-end;
+  //gap: 10px;
 }
 
 /* logo image size */

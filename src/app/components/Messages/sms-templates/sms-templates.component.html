@@ -1,0 +1,106 @@
+<!-- <div class="sms-center-container">
+  <div class="header-section">
+    <h2><mat-icon>description</mat-icon> SMS Template Management</h2>
+    <p class="subtitle">Create and manage message templates with dynamic variables.</p>
+  </div>
+
+  <div class="content-grid">
+    <mat-card class="compose-card">
+      <mat-card-header>
+        <mat-card-title class="title">Create / Edit Template</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="form-row">
+          <div class="custom-input-container">
+            <label class="input-label">Template Name</label>
+            <input type="text" [(ngModel)]="templateName" placeholder="e.g. Absence Alert" class="custom-input" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="variable-buttons">
+            <label class="input-label">Insert Variable:</label>
+            <div class="buttons-group">
+              <button mat-stroked-button (click)="insertVariable('{parent_name}')" matTooltip="Inserts parent name from database">{Parent Name}</button>
+              <button mat-stroked-button (click)="insertVariable('{child_name}')" matTooltip="Inserts student name from database">{Child Name}</button>
+              <button mat-stroked-button (click)="insertVariable('{class_name}')" matTooltip="Inserts class name from database">{Class Name}</button>
+              <button mat-stroked-button (click)="insertVariable('{today_date}')" matTooltip="Inserts current date">{Today Date}</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="custom-input-container message-field">
+            <label class="input-label">Template Content</label>
+            <textarea #templateTextArea [(ngModel)]="templateBody" rows="8" maxlength="480" class="custom-textarea message-textarea" 
+              placeholder="Dear parent {parent_name}, your son/daughter {child_name} has missed class for {class_name} date {today_date}"></textarea>
+            <div class="message-footer">
+              <span class="message-counter">
+                {{ templateBody.length }} / 480
+              </span>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button (click)="resetForm()" style="color:darkred">Clear</button>
+        <button mat-raised-button class="send-btn" (click)="saveTemplate()" [disabled]="!templateName || !templateBody">
+          <mat-icon>save</mat-icon> Save Template
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <div class="stats-column">
+      <mat-card class="stats-card">
+        <mat-card-header>
+          <mat-card-title class="title">Live Preview</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="preview-box">
+            <p class="preview-text">{{ getPreview() }}</p>
+          </div>
+          <p class="note">Variables will be replaced with actual data when sending.</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="history-section">
+      <mat-card class="history-card">
+        <mat-card-header>
+          <mat-card-title class="title">Saved Templates</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="history-table-container">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th>Template Name</th>
+                  <th>Message Content</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let template of savedTemplates">
+                  <td style="font-weight: 600;">{{ template.name }}</td>
+                  <td class="message-cell" [title]="template.body">{{ template.body }}</td>
+                  <td>
+                    <button mat-icon-button color="primary" (click)="editTemplate(template)" matTooltip="Edit">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteTemplate(template.id)" matTooltip="Delete">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </tr>
+                <tr *ngIf="savedTemplates.length === 0">
+                  <td colspan="3" class="empty-state">No templates saved yet</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+ -->

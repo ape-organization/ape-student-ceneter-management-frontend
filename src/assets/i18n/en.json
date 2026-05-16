@@ -121,6 +121,7 @@
   },
   "SIDE_NAV": {
     "SMS_CENTER": "SMS Center",
+    "SMS_TEMPLATES": "SMS Templates",
     "WHATSAPP_CENTER": "WhatsApp Center",
     "DASHBOARD": "Dashboard",
     "TEACHERS_MANAGEMENT": "Teachers Management",

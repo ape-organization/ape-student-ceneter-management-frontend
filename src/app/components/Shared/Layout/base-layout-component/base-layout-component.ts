@@ -26,6 +26,7 @@ export class BaseLayoutComponent implements OnInit {
     private observer: BreakpointObserver
   ) {}
   ngOnInit(): void {
+
   }
 
   ngAfterViewInit() {
@@ -44,5 +45,11 @@ export class BaseLayoutComponent implements OnInit {
       });
 
   }
+onItemSelected() {
+  if (this.isMobile) {
+    this.sidenav.close();
+  }
+
+}
 
 }

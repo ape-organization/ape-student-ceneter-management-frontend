@@ -8,6 +8,7 @@
   },
   "SIDE_NAV": {
     "SMS_CENTER": "مركز الرسائل",
+    "SMS_TEMPLATES": "نماذج الرسائل",
     "WHATSAPP_CENTER": "مركز الواتساب",
     "DASHBOARD": "لوحة التحكم",
     "TEACHERS_MANAGEMENT": "إدارة المعلمين",

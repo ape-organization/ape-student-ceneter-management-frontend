@@ -1,5 +1,6 @@
  <mat-nav-list>
   <div class="container">
+   
       <div mat-list-item class="headContainer" 
         [class.selected]="selectedItem === 'dashboard'"
         (click)="selectItem('dashboard')"
@@ -135,6 +136,20 @@
           <mat-icon class="icon" style="margin-left: auto; font-size: 20px;
            cursor: pointer;"
           (click)="refreshPage('SMS_Center')"
+          >
+      refresh
+    </mat-icon>
+    </div>
+    <div mat-list-item class="headContainer"
+      [class.selected]="selectedItem === 'SMS_Templates'"
+      (click)="selectItem('SMS_Templates')"
+      style="padding-left: 25px;"
+    >
+        <mat-icon class="icon">description</mat-icon>
+        <p class="title">{{ 'SIDE_NAV.SMS_TEMPLATES' | translate }}</p>
+          <mat-icon class="icon" style="margin-left: auto; font-size: 20px;
+           cursor: pointer;"
+          (click)="refreshPage('SMS_Templates')"
           >
       refresh
     </mat-icon>

@@ -7,29 +7,31 @@
     position="start"
     [mode]="isMobile ? 'over' : 'side'"
     [opened]="!isMobile"
-    class="sidenav">
+    class="sidenav"
+    >
 
     <div class="logo">
       <img src="assets/images/logo.png" class="logo-image">
       <span>Admin Panel</span>
     </div>
 
-    <app-sidenav-component></app-sidenav-component>
+    <app-sidenav-component     (itemSelected)="onItemSelected()"
+></app-sidenav-component>
 
   </mat-sidenav>
 
 
   <mat-sidenav-content>
 
-    <mat-toolbar class="head ">
+    <mat-toolbar class=" head ">
 
-      <div class="toolbar-left">
+      <div class=" toolbar-left ">
         <button mat-icon-button class="menu" (click)="sidenav.toggle()">
           <mat-icon class="icon">menu</mat-icon>
         </button>
       </div>
 
-      <div class="toolbar-right">
+      <div class=" toolbar-right ">
         <app-header-component></app-header-component>
       </div>
 
