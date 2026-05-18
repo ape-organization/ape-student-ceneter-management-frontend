@@ -14,37 +14,34 @@
   @media (max-width: 768px) {
     padding: 1rem;
   }
+}
 
-  .header-section {
-    margin-bottom: 2.5rem;
+.text-gradient,
+.text-gradient mat-icon {
 
-    h2 {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.5rem;
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: var(--main-head-color);
+  background: linear-gradient(
+    135deg,
+    var(--main-head-color) 0%,
+    var(--sidenav-selected-color) 100%
+  );
 
-      // Style for mat-icon in the header
-      mat-icon {
-        font-size: 2.2rem;
-        height: 2.2rem;
-        width: 2.2rem;
-        color: var(--main-head-color);
-      }
-    }
+  background-clip: text;
+  -webkit-background-clip: text;
 
-    .subtitle {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+  .subtitle {
       color: var(--main-color);
       margin-left: calc(2.2rem + 0.75rem); // Align with text after icon
       font-size: 1rem;
       opacity: 0.8;
     }
-  }
-}
-
 .content-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px; // Flexible main column
@@ -63,7 +60,7 @@
   overflow-x: hidden;
 }
 // Common card styles
-.compose-card,
+/* .compose-card,
 .stats-card {
   background-color: var(--main-white-color);
   border-radius: var(--card-border-radius);
@@ -174,11 +171,11 @@
     opacity: 0.8;
   }
 }
-
+ */
 
 
 /////////////
- .title {
+ /* .title {
     padding: 0 1rem 1rem 1rem;
     border-bottom: 1px solid var(--border-color);
     margin-bottom: 1rem;
@@ -292,9 +289,8 @@
   gap: 20px;
   flex-wrap: wrap;
   padding-bottom: 50px;
-}
-
-/* Toggle Switch */
+} */
+/* 
 .toggle-container {
   display: flex;
   align-items: center;
@@ -341,7 +337,6 @@
   font-weight: 500;
 }
 
-/* Date input */
 
 .date-field {
   display: flex;
@@ -362,9 +357,9 @@
 .custom-date-input:focus {
   border-color: #3f51b5;
   box-shadow: 0 0 0 2px rgba(63,81,181,0.15);
-}
+} */
 
-.history-section {
+/* .history-section {
   grid-column: 1 / -1;
   margin-top: 2rem;
 
@@ -416,4 +411,4 @@
       }
     }
   }
-}
+} */

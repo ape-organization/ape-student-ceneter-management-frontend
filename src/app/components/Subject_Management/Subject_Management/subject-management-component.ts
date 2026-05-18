@@ -1,9 +1,9 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { MaterialModule } from '../../../material/material-module';
+import { MaterialModule } from '../../../material/MaterialModule';
 import { TranslateModule } from '@ngx-translate/core';
 import { ExportService } from '../../../Services/export.service';
 import { CommonModule } from '@angular/common';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AddSubjectComponent } from '../add-subject-component/add-subject-component';
 import { SubjectService } from '../../../Services/subject.service'; // Assuming this path is correct
 import { Subject } from '../../../models';
@@ -11,11 +11,16 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { NotificationService } from '../../../Services/notification.service';
+import { ManagementDataTable } from '../../Shared_Management/management-data-table/management-data-table';
+import { ManagementSearchFilter } from '../../Shared_Management/management-search-filter/management-search-filter';
+import { ManagementToolbar } from '../../Shared_Management/management-toolbar/management-toolbar';
 
 @Component({
   selector: 'app-subject-management-component',
   standalone: true,
-  imports: [MaterialModule, TranslateModule, CommonModule, MatDialogModule],
+  imports: [MaterialModule, TranslateModule, CommonModule
+    ,ManagementToolbar,ManagementSearchFilter,ManagementDataTable
+  ],
   templateUrl: './subject-management-component.html',
   styleUrl: './subject-management-component.scss',
 })

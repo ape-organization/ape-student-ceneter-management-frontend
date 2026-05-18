@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MaterialModule } from '../../../material/material-module';
+import { MaterialModule } from '../../../material/MaterialModule';
 import { TranslateModule } from '@ngx-translate/core';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AddTeacherComponent } from '../add-teacher-component/add-teacher.component';
 import { ExportService } from '../../../Services/export.service';
 import { TeacherService } from '../../../Services/teacher.service'; // Assuming this path is correct
@@ -11,13 +11,11 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { NotificationService } from '../../../Services/notification.service';
+import { ManagementDataTable } from '../../Shared_Management/management-data-table/management-data-table';
+import { ManagementSearchFilter } from '../../Shared_Management/management-search-filter/management-search-filter';
+import { ManagementToolbar } from '../../Shared_Management/management-toolbar/management-toolbar';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 @Component({
   selector: 'app-teacher-management-component',
@@ -26,13 +24,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MaterialModule,
     TranslateModule,
     CommonModule,
-    MatDialogModule, // Needed for MatDialog
-    MatButtonModule, // For buttons
-    MatIconModule,   // For icons
-    MatMenuModule,   // For export menu
-    MatFormFieldModule,
-    MatInputModule,
-    MatTooltipModule
+    ManagementToolbar,ManagementSearchFilter,ManagementDataTable
   ],
   templateUrl: './teacher-management-component.html',
   styleUrl: './teacher-management-component.scss',

@@ -1,0 +1,48 @@
+<div class="stats-column">
+
+  <mat-card class="stats-card">
+
+    <mat-card-header>
+
+      <mat-card-title class="title">
+        Summary
+      </mat-card-title>
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <div class="stat-item">
+
+        <span class="label">
+          Recipients:
+        </span>
+
+        <span class="value">
+          {{ recipientCount }}
+        </span>
+
+      </div>
+
+      <div class="stat-item highlight">
+
+        <span class="label">
+          Est. SMS Count:
+        </span>
+
+        <span class="value">
+          {{ totalSMS }}
+        </span>
+
+      </div>
+
+      <p class="note">
+        Cost is calculated based on
+        total SMS segments sent.
+      </p>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

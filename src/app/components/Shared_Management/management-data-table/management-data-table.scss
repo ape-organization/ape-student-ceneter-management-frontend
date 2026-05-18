@@ -1,0 +1,55 @@
+//table 
+mat-table {
+  background: transparent !important;
+}
+th.mat-mdc-header-cell {
+  background-color: rgba(0, 0, 0, 0.02) !important;
+  color: var(--main-head-color);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.04);
+  font-weight: 700 !important;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  padding: 1.5rem 1rem !important;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+  }
+}
+
+td.mat-mdc-cell {
+  color: var(--head-color);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 1.25rem 1rem !important;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+//paginator
+.paginator-style
+{
+  color: var(--main-black-color);
+}
+//action btn 
+.action-btn {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--background-color);
+  margin: 0 2px;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.2);
+  }
+}
+///////
+.student-row {
+  transition: all 0.2s ease;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: var(--sidenav-hovor-color) !important;
+    transform: scale(1.002);
+  }
+}

@@ -6,7 +6,7 @@ import { NotificationService } from '../../../Services/notification.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { MaterialModule } from '../../../material/material-module';
+import { MaterialModule } from '../../../material/MaterialModule';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowDetailsComponent } from '../../Shared/show-details-component/show-details-component';
 

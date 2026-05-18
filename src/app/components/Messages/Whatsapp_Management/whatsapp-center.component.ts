@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MaterialModule } from '../../../material/material-module';
+import { SharedModule } from '../../../material/SharedModule';
+
+import { MaterialModule } from '../../../material/MaterialModule';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WhatsappService } from '../../../Services/whatsapp.service';
+import { ManagementSmsSummary } from '../../Shared_Management/Messages/management-sms-summary/management-sms-summary';
+import { ManagementSmsHistory } from '../../Shared_Management/Messages/management-sms-history/management-sms-history';
+import { ManagementSmsCompose } from '../../Shared_Management/Messages/management-sms-compose/management-sms-compose';
 
 interface RecipientGroup {
   value: string;
@@ -40,15 +38,8 @@ interface WhatsappHistory {
   selector: 'app-whatsapp-center',
   standalone: true,
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MaterialModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSlideToggleModule,
-    MatTooltipModule
+SharedModule,    MaterialModule,
+ ManagementSmsCompose , ManagementSmsHistory,ManagementSmsSummary
   ],
   templateUrl: './whatsapp-center.component.html',
   styleUrls: ['./whatsapp-center.component.scss']
@@ -189,7 +180,7 @@ export class WhatsappCenterComponent implements OnInit {
     return this.messageBody.length;
   }
 
-  async sendMessage(): Promise<void> {
+  async sendMessage(data:any): Promise<void> {
     if (this.whatsappStatus !== 'online') {
       this.setFeedback('WhatsApp is not connected. Please check your connection.', 'error');
       return;

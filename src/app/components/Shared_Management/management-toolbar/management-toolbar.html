@@ -1,0 +1,41 @@
+   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+
+
+ <div>
+  <h2 class="h3 fw-bold mb-1 text-gradient">
+    <mat-icon class="align-middle me-1">{{ icon }}</mat-icon>
+    {{ title | translate }}
+  </h2>
+</div>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <div class="d-flex gap-3 align-items-center justify-content-md-end">
+
+    <button mat-flat-button class="rounded-pill px-4 py-2 btn-add" (click)="add.emit()">
+      <mat-icon>add</mat-icon>
+      {{ addButtonText | translate }}
+    </button>
+
+    <button [matMenuTriggerFor]="exportMenu" class=" btn-export">
+      <mat-icon>download</mat-icon>
+      {{ 'COMMON.EXPORT' | translate }}
+    </button>
+
+    <mat-menu #exportMenu="matMenu" xPosition="before"  class="custom-red-menu">
+
+      <button mat-menu-item (click)="exportPdf.emit()">
+        
+         <mat-icon class="text-danger">picture_as_pdf</mat-icon>
+           <span>{{ 'COMMON.EXPORT_PDF' | translate }}</span>
+
+      </button>
+
+      <button mat-menu-item (click)="exportExcel.emit()">
+           <mat-icon class="text-success">grid_on</mat-icon>
+           <span>{{ 'COMMON.EXPORT_EXCEL' | translate }}</span>
+      </button>
+
+    </mat-menu>
+
+  </div>
+</div>
+</div>

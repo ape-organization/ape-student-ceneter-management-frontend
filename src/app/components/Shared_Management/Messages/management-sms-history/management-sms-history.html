@@ -1,0 +1,74 @@
+<div class="history-section">
+
+  <mat-card class="history-card">
+
+    <mat-card-header>
+
+      <mat-card-title class="title">
+        History Log
+      </mat-card-title>
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <div class="history-table-container">
+
+        <table class="history-table">
+
+          <thead>
+
+            <tr>
+              <th>Who Sent?</th>
+              <th>When?</th>
+              <th>To Whom?</th>
+              <th>Message</th>
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="let item of history">
+
+              <td>{{ item.sender }}</td>
+
+              <td>
+                {{ item.timestamp | date:'short' }}
+              </td>
+
+              <td>{{ item.recipient }}</td>
+
+              <td
+                class="message-cell"
+                [title]="item.message">
+
+                {{ item.message }}
+
+              </td>
+
+            </tr>
+
+            <tr *ngIf="history.length === 0">
+
+              <td
+                colspan="4"
+                class="empty-state">
+
+                No history found
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

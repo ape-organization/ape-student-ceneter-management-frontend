@@ -1,18 +1,17 @@
 import { Component, Inject, OnInit, computed, signal } from '@angular/core';
-import { MaterialModule } from '../../../material/material-module';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { ClassModel, Teacher, Location } from '../../../models';
+import { MaterialModule } from '../../../material/MaterialModule';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import {  Location } from '../../../models';
 import { TranslateModule } from '@ngx-translate/core';
-import { CommonModule } from '@angular/common';
-import { ClassService } from '../../../Services/class.service';
 import { TeacherService } from '../../../Services/teacher.service';
 import { LocationService } from '../../../Services/location.service';
+import { SharedModule } from '../../../material/SharedModule';
 
 @Component({
   selector: 'app-add-class-component',
   standalone: true,
-  imports: [MaterialModule, ReactiveFormsModule, TranslateModule, CommonModule, MatDialogModule],
+  imports: [MaterialModule, SharedModule, TranslateModule],
   templateUrl: './add-class-component.html',
   styleUrl: './add-class-component.scss',
 })

@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { MaterialModule } from '../../../material/material-module';
+import { MaterialModule } from '../../../material/MaterialModule';
 import { TranslateModule } from '@ngx-translate/core';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -11,11 +11,16 @@ import { AddLocationComponent } from '../add-location-component/add-location-com
 import { ExportService } from '../../../Services/export.service';
 import { LocationService } from '../../../Services/location.service';
 import { NotificationService } from '../../../Services/notification.service';
+import { ManagementDataTable } from '../../Shared_Management/management-data-table/management-data-table';
+import { ManagementSearchFilter } from '../../Shared_Management/management-search-filter/management-search-filter';
+import { ManagementToolbar } from '../../Shared_Management/management-toolbar/management-toolbar';
 
 @Component({
   selector: 'app-location-management-component',
   standalone: true,
-  imports: [MaterialModule, TranslateModule, CommonModule, MatDialogModule],
+  imports: [MaterialModule, TranslateModule, CommonModule
+    ,ManagementToolbar,ManagementSearchFilter,ManagementDataTable
+  ],
   templateUrl: './location-management-component.html',
   styleUrl: './location-management-component.scss',
 })

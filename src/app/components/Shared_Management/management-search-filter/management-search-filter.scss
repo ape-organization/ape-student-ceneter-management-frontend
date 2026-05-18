@@ -1,0 +1,28 @@
+//input feild 
+.input-group {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.input-group .form-control {
+  background-color: var(--background-white-color);
+  color:var(--main-black-color);
+  border: none;
+  box-shadow: none;
+}
+.input-group ::placeholder {
+  color: var(--main-color);
+  opacity: 1;
+}
+.input-group .form-control:focus {
+ 
+  box-shadow: none;
+  outline: none;
+}
+
+.input-group-text {
+  color: var(--main-head-color);
+  background-color: var(--background-white-color);
+
+  border: none;
+}

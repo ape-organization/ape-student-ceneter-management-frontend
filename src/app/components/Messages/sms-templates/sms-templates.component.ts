@@ -1,8 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '../../../material/material-module';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MaterialModule } from '../../../material/MaterialModule';
+import { SharedModule } from '../../../material/SharedModule';
 
 interface SMSTemplate {
   id: number;
@@ -14,11 +12,9 @@ interface SMSTemplate {
   selector: 'app-sms-templates',
   standalone: true,
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MaterialModule,
-    MatTooltipModule
+   SharedModule,
+    MaterialModule
+    
   ],
   templateUrl: './sms-templates.component.html',
   styleUrls: ['./sms-templates.component.scss']
@@ -38,9 +34,9 @@ export class SmsTemplatesComponent {
 
   insertVariable(variable: string) {
     const textarea = this.templateTextArea.nativeElement;
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const text = this.templateBody;
+    const start = textarea.selectionStart || 0;
+    const end = textarea.selectionEnd || 0;
+    const text = this.templateBody || '';
     
     this.templateBody = text.substring(0, start) + variable + text.substring(end);
     

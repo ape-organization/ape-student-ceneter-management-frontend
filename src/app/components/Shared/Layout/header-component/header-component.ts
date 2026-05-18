@@ -1,5 +1,5 @@
 import { Component, EventEmitter, HostListener, Output } from '@angular/core';
-import { MaterialModule } from '../../../../material/material-module';
+import { MaterialModule } from '../../../../material/MaterialModule';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageService } from '../../../../Services/language.service';

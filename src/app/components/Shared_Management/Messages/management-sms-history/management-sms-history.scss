@@ -1,0 +1,53 @@
+.history-section {
+  grid-column: 1 / -1;
+  margin-top: 2rem;
+
+  .history-card {
+    padding: var(--card-padding);
+    background-color: var(--main-white-color);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-box-shadow);
+    border: 1px solid var(--border-color);
+
+    .history-table-container {
+      overflow-x: auto;
+      margin-top: 1rem;
+
+      .history-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+
+        th, td {
+          padding: 1rem;
+          text-align: left;
+          border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+          font-weight: 600;
+          color: var(--main-color);
+          background-color: var(--input-bg-color);
+        }
+
+        tr:hover {
+          background-color: rgba(0, 0, 0, 0.02);
+        }
+
+        .message-cell {
+          max-width: 300px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .empty-state {
+          text-align: center;
+          padding: 2rem;
+          color: var(--main-color);
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { MaterialModule } from '../../../material/material-module';
+import { MaterialModule } from '../../../material/MaterialModule';
 
 @Component({
   selector: 'app-confirm-delete',

@@ -1,15 +1,16 @@
 import { Component, Inject, OnInit, inject } from '@angular/core';
-import { MaterialModule } from '../../../material/material-module';
+import { MaterialModule } from '../../../material/MaterialModule';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Location } from '../../../models';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../../material/SharedModule';
 
 @Component({
   selector: 'app-add-location-component',
   standalone: true,
-  imports: [MaterialModule, ReactiveFormsModule, TranslateModule, CommonModule, MatDialogModule],
+  imports: [MaterialModule, SharedModule, TranslateModule],
   templateUrl: './add-location-component.html',
   styleUrl: './add-location-component.scss',
 })

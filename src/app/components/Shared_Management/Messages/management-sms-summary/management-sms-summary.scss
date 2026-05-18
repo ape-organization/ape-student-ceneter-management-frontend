@@ -1,0 +1,71 @@
+// Common card styles
+.compose-card,
+.stats-card {
+  background-color: var(--main-white-color);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--card-box-shadow);
+  border: 1px solid var(--border-color);
+}
+// Stats Column Styles
+.stats-card {
+  position: sticky;
+  top: 2rem;
+  padding: 1rem; // A bit less padding for stats
+
+  .title {
+    padding: 0 1rem 1rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--main-head-color);
+  }
+
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    transition: background-color 0.2s ease;
+    border-radius: 6px;
+
+    &:hover {
+      background-color: var(--input-bg-color);
+    }
+
+    .label {
+      font-weight: 500;
+      color: var(--main-color);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--main-head-color);
+    }
+
+    &.highlight .value {
+      color: var(--button-submit-color);
+    }
+  }
+
+  .note {
+    margin: 1.5rem 1rem 0.5rem;
+    font-size: 0.875rem;
+    color: var(--main-color);
+    font-style: italic;
+    opacity: 0.8;
+  }
+}
+/////////////
+ .title {
+    padding: 0 1rem 1rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--main-head-color);
+  }

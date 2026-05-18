@@ -1,15 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MaterialModule } from '../../../material/material-module';
-import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MaterialModule } from '../../../material/MaterialModule';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Student } from '../../../models';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../../../material/SharedModule';
 
 @Component({
   selector: 'app-add-student-component',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MaterialModule, TranslateModule],
+  imports: [SharedModule, MaterialModule, TranslateModule],
   templateUrl: './add-student-component.html',
   styleUrls: ['./add-student-component.scss']
 })

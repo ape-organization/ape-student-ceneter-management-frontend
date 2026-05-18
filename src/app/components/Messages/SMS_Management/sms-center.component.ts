@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatTooltipModule } from '@angular/material/tooltip';
-import { MaterialModule } from '../../../material/material-module';
+
+import { MaterialModule } from '../../../material/MaterialModule';
+import { SharedModule } from '../../../material/SharedModule';
+import { ManagementSmsCompose } from '../../Shared_Management/Messages/management-sms-compose/management-sms-compose';
+import { ManagementSmsHistory } from '../../Shared_Management/Messages/management-sms-history/management-sms-history';
+import { ManagementSmsSummary } from '../../Shared_Management/Messages/management-sms-summary/management-sms-summary';
 
 interface RecipientGroup {
   value: string;
@@ -38,15 +36,8 @@ interface SMSHistory {
   selector: 'app-sms-center',
   standalone: true,
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-   MaterialModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatSlideToggleModule,
-    MatTooltipModule
+    SharedModule,
+   MaterialModule,ManagementSmsCompose , ManagementSmsHistory,ManagementSmsSummary
   ],
   templateUrl: './sms-center.component.html',
   styleUrls: ['./sms-center.component.scss']
@@ -174,7 +165,7 @@ selectClass(cls: any) {
     return this.smsSegments * this.currentRecipientCount;
   }
 
-  sendMessage(): void {
+  sendMessage(data:any): void {
     // Mock save to history
     let recipientStr = '';
     switch (this.selectedRecipientType) {

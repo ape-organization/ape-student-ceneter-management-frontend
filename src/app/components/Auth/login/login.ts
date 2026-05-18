@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MaterialModule } from '../../../material/material-module';
+import { FormBuilder, Validators } from '@angular/forms';
+import { MaterialModule } from '../../../material/MaterialModule';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../../material/SharedModule';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, MaterialModule,CommonModule],
+  imports: [SharedModule, MaterialModule],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })

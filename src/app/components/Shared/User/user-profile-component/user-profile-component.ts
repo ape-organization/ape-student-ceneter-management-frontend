@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MaterialModule } from '../../../../material/material-module';
+import { MaterialModule } from '../../../../material/MaterialModule';
 import { MatDialog } from '@angular/material/dialog';
 import { EditUserComponent } from '../../../Users/edit-user-component/edit-user-component';
 

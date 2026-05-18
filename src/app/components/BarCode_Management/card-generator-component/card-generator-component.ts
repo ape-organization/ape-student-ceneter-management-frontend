@@ -1,15 +1,15 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, ChangeDetectorRef, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MaterialModule } from '../../../material/material-module';
+
+import { MaterialModule } from '../../../material/MaterialModule';
 import QRCode from 'qrcode';
 import { register } from 'swiper/element/bundle';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../../../material/SharedModule';
 
 @Component({
   selector: 'app-card-generator-component',
   standalone: true,
-  imports: [CommonModule, FormsModule, MaterialModule,TranslateModule],
+  imports: [SharedModule, MaterialModule,TranslateModule],
   templateUrl: './card-generator-component.html',
   styleUrl: './card-generator-component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

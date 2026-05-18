@@ -1,9 +1,8 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { MaterialModule } from '../../../material/material-module';
+import { MaterialModule } from '../../../material/MaterialModule';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -12,13 +11,18 @@ import { ExportService } from '../../../Services/export.service';
 import { ClassService } from '../../../Services/class.service';
 import { TeacherService } from '../../../Services/teacher.service';
 import { LocationService } from '../../../Services/location.service';
-import { ClassModel, Teacher, Location } from '../../../models';
+import { ClassModel, Location } from '../../../models';
 import { AddClassComponent } from '../add-class-component/add-class-component';
+import { SharedModule } from '../../../material/SharedModule';
+import { ManagementToolbar } from '../../Shared_Management/management-toolbar/management-toolbar';
+import { ManagementSearchFilter } from '../../Shared_Management/management-search-filter/management-search-filter';
+import { ManagementDataTable } from '../../Shared_Management/management-data-table/management-data-table';
 
 @Component({
   selector: 'app-class-management-component',
   standalone: true,
-  imports: [MaterialModule, TranslateModule, FormsModule, CommonModule, MatDialogModule],
+  imports: [MaterialModule, TranslateModule, SharedModule,ManagementToolbar,
+    ManagementSearchFilter,ManagementDataTable],
   templateUrl: './class-management-component.html',
   styleUrl: './class-management-component.scss',
 })

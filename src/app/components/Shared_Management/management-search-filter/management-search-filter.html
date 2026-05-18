@@ -1,0 +1,14 @@
+<div class="input-group mb-3">
+
+  <span class="input-group-text">
+    <mat-icon>{{icon}}</mat-icon>
+  </span>
+
+  <input
+    type="text"
+    class="form-control"
+    [placeholder]="placeholder"
+    (keyup)="onInput($event)"
+  />
+
+</div>

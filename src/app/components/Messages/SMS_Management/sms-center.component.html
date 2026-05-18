@@ -1,18 +1,35 @@
+
 <div class="sms-center-container">
-  <div class="header-section">
-    <h2><mat-icon>message</mat-icon> SMS Center</h2>
+  <div>
+   <h2 class="h3 fw-bold mb-1 text-gradient " >
+    <mat-icon class="align-middle me-1" >message</mat-icon>
+    SMS Center
+  </h2>
+
     <p class="subtitle">Compose and send notifications to students and staff.</p>
   </div>
 
   <div class="content-grid">
+    <!------------------------->
+      <app-management-sms-compose
+      [recipientTypes]="recipientTypes"
+      [classes]="classes"
+      [grades]="grades"
+      [templates]="templates"
+      (sendMessageEvent)="sendMessage($event)">
+    </app-management-sms-compose>
+     <app-management-sms-summary
+      [recipientCount]="currentRecipientCount"
+      [totalSMS]="totalEstimatedSMS">
+    </app-management-sms-summary>
+    <!---------------------------------->
     <!-- Composition Card -->
-    <mat-card class="compose-card">
+    <!-- <mat-card class="compose-card">
       <mat-card-header>
         <mat-card-title class="title">Compose Message</mat-card-title>
       </mat-card-header>
       <mat-card-content>
         <div class="form-row">
-          <!------------------>
           <div class="custom-select-container">
             <label class="select-label">Select Recipients</label>
             <div class="select-input" (click)="toggleRecipientDropdown()">
@@ -32,7 +49,6 @@
           </div>
         </div>
 
-        <!-- Conditional: Class Selector -->
         <div class="form-row" *ngIf="selectedRecipientType === 'by_class'">
           <div class="custom-select-container">
             <label class="select-label">Choose Class</label>
@@ -50,7 +66,6 @@
           </div>
         </div>
 
-        <!-- Conditional: Grade Selector -->
         <div class="form-row" *ngIf="selectedRecipientType === 'by_grade'">
           <div class="custom-select-container">
             <label class="select-label">Choose Grade</label>
@@ -68,7 +83,6 @@
           </div>
         </div>
 
-        <!-- Templates -->
         <div class="form-row">
           <div class="custom-select-container">
             <label class="select-label">Use Template (Optional)</label>
@@ -87,18 +101,17 @@
           </div>
         </div>
 
-        <!-- Conditional: Custom Numbers -->
         <div class="custom-input-container" *ngIf="selectedRecipientType === 'custom'">
           <label class="input-label">Phone Numbers (comma separated)</label>
           <textarea [(ngModel)]="customNumbers" placeholder="e.g. +1234567890, +0987654321" rows="2" class="custom-textarea"></textarea>
           <div class="input-hint">Enter numbers separated by commas</div>
         </div>
 
-        <!-- Message Body -->
         <div class="form-row">
           <div class="custom-input-container message-field">
             <label class="input-label">Message Content</label>
-            <textarea [(ngModel)]="messageBody" rows="6" maxlength="480" class="custom-textarea message-textarea"></textarea>
+            <textarea [(ngModel)]="messageBody" rows="6" maxlength="480" 
+            class="custom-textarea message-textarea"></textarea>
             <div class="message-footer">
               <span class="message-counter">
                 {{ messageLength }} / 160
@@ -108,7 +121,6 @@
           </div>
         </div>
 
-        <!-- Scheduling -->
         <div class="schedule-row">
           <label class="toggle-container">
             <input type="checkbox" [(ngModel)]="isScheduled">
@@ -122,14 +134,14 @@
       </mat-card-content>
       <mat-card-actions align="end">
         <button mat-raised-button style="color:darkred">Reset</button>
-        <button mat-raised-button class="send-btn" (click)="sendMessage()" [disabled]="!selectedRecipientType || messageBody.length === 0">
+        <button mat-raised-button class="send-btn" (click)="sendMessage('koko')" [disabled]="!selectedRecipientType || messageBody.length === 0">
           <mat-icon>send</mat-icon> {{ isScheduled ? 'Schedule' : 'Send Now' }}
         </button>
       </mat-card-actions>
-    </mat-card>
+    </mat-card> -->
 
     <!-- Preview & Stats Card -->
-    <div class="stats-column">
+    <!-- <div class="stats-column">
       <mat-card class="stats-card">
         <mat-card-header>
           <mat-card-title class="title">Summary</mat-card-title>
@@ -146,10 +158,14 @@
           <p class="note">Cost is calculated based on total SMS segments sent.</p>
         </mat-card-content>
       </mat-card>
-    </div>
-
+    </div> -->
+<!----------------->
+  <app-management-sms-history
+    [history]="history">
+  </app-management-sms-history>
+<!------------------->
     <!-- History Log -->
-    <div class="history-section">
+   <!--  <div class="history-section">
       <mat-card class="history-card">
         <mat-card-header>
           <mat-card-title class="title">History Log</mat-card-title>
@@ -180,6 +196,6 @@
           </div>
         </mat-card-content>
       </mat-card>
-    </div>
+    </div> -->
   </div>
 </div>

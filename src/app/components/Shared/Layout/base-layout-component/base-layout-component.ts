@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MaterialModule } from '../../../../material/material-module';
+import { MaterialModule } from '../../../../material/MaterialModule';
 import { SidenavComponent } from '../sidenav-component/sidenav-component';
 import { RouterModule } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';

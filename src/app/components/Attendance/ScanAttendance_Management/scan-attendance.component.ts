@@ -1,7 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '../../../material/material-module';
+import { FormControl } from '@angular/forms';
+import { MaterialModule } from '../../../material/MaterialModule';
 import { AttendanceService } from '../../../Services/attendance.service';
 import { StudentService } from '../../../Services/student.service';
 import { PaymentService } from '../../../Services/payment.service';
@@ -9,11 +8,12 @@ import { SmsService } from '../../../Services/sms.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable, startWith, map, of } from 'rxjs';
+import { SharedModule } from '../../../material/SharedModule';
 
 @Component({
   selector: 'app-scan-attendance',
   standalone: true,
-  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [SharedModule, MaterialModule],
   templateUrl: './scan-attendance.component.html',
   styleUrl: './scan-attendance.component.scss'
 })

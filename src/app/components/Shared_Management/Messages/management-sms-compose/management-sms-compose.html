@@ -1,0 +1,230 @@
+<mat-card class="compose-card">
+
+  <mat-card-header>
+    <mat-card-title class="title">
+      Compose Message
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <!-- Recipient Type -->
+
+    <div class="form-row">
+
+      <div class="custom-select-container">
+
+        <label class="select-label">
+          Select Recipients
+        </label>
+
+        <select [(ngModel)]="selectedRecipientType">
+
+          <option value="">
+            Select Recipients
+          </option>
+
+          <option
+            *ngFor="let type of recipientTypes"
+            [value]="type.value">
+
+            {{ type.viewValue }}
+
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+    <!-- Class -->
+
+    <div
+      class="form-row"
+      *ngIf="selectedRecipientType === 'by_class'">
+
+      <div class="custom-select-container">
+
+        <label class="select-label">
+          Choose Class
+        </label>
+
+        <select [(ngModel)]="selectedClass">
+
+          <option
+            *ngFor="let cls of classes"
+            [ngValue]="cls">
+
+            {{ cls.name }}
+            ({{ cls.count }} students)
+
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+    <!-- Grade -->
+
+    <div
+      class="form-row"
+      *ngIf="selectedRecipientType === 'by_grade'">
+
+      <div class="custom-select-container">
+
+        <label class="select-label">
+          Choose Grade
+        </label>
+
+        <select [(ngModel)]="selectedGrade">
+
+          <option
+            *ngFor="let grade of grades"
+            [ngValue]="grade">
+
+            {{ grade.name }}
+            ({{ grade.count }} students)
+
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+    <!-- Templates -->
+
+    <div class="form-row">
+
+      <div class="custom-select-container">
+
+        <label class="select-label">
+          Use Template
+        </label>
+
+        <select (change)="onTemplateSelect($event)">
+
+          <option value="">
+            Select Template
+          </option>
+
+          <option
+            *ngFor="let template of templates"
+            [value]="template.id">
+
+            {{ template.name }}
+
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+    <!-- Custom Numbers -->
+
+    <div
+      class="custom-input-container"
+      *ngIf="selectedRecipientType === 'custom'">
+
+      <label class="input-label">
+        Phone Numbers
+      </label>
+
+      <textarea
+        [(ngModel)]="customNumbers"
+        rows="2">
+      </textarea>
+
+    </div>
+
+    <!-- Message -->
+
+    <div class="form-row">
+
+      <div class="custom-input-container message-field">
+
+        <label class="input-label">
+          Message Content
+        </label>
+
+        <textarea
+          [(ngModel)]="messageBody"
+         rows="6" maxlength="480" 
+            class="custom-textarea message-textarea">
+        </textarea>
+
+        <div class="message-footer">
+
+          <span>
+
+            {{ messageLength }}/160
+
+            ({{ smsSegments }}
+            segment{{ smsSegments !== 1 ? 's' : '' }})
+
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Schedule -->
+
+    <div class="schedule-row">
+
+      <label>
+
+        <input
+          type="checkbox"
+          [(ngModel)]="isScheduled">
+
+        Schedule for later
+
+      </label>
+
+      <div *ngIf="isScheduled">
+
+        <input
+          type="datetime-local"
+          [(ngModel)]="scheduleDate">
+
+      </div>
+
+    </div>
+
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="resetForm()">
+
+      Reset
+
+    </button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="sendMessage()"
+      [disabled]="!messageBody">
+
+      <mat-icon>send</mat-icon>
+
+      {{ isScheduled ? 'Schedule' : 'Send Now' }}
+
+    </button>
+
+  </mat-card-actions>
+
+</mat-card>

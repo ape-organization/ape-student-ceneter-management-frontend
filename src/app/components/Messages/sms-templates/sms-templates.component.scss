@@ -6,7 +6,6 @@
   --input-bg-color: #f7f8fa;
   --border-color: rgba(0, 0, 0, 0.08);
 }
-
 .sms-center-container {
   padding: 2rem;
   color: var(--main-head-color);
@@ -95,6 +94,13 @@
   font-weight: 500;
 }
 
+//allow childern to shrink 
+.content-grid > * {
+  min-width: 0;
+}
+.content-grid {
+  overflow-x: hidden;
+}
 .custom-input {
   width: 100%;
   padding: 10px 12px;

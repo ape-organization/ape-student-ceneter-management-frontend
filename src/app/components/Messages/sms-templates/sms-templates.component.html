@@ -1,4 +1,4 @@
-<!-- <div class="sms-center-container">
+ <div class="sms-center-container">
   <div class="header-section">
     <h2><mat-icon>description</mat-icon> SMS Template Management</h2>
     <p class="subtitle">Create and manage message templates with dynamic variables.</p>
@@ -21,10 +21,10 @@
           <div class="variable-buttons">
             <label class="input-label">Insert Variable:</label>
             <div class="buttons-group">
-              <button mat-stroked-button (click)="insertVariable('{parent_name}')" matTooltip="Inserts parent name from database">{Parent Name}</button>
-              <button mat-stroked-button (click)="insertVariable('{child_name}')" matTooltip="Inserts student name from database">{Child Name}</button>
-              <button mat-stroked-button (click)="insertVariable('{class_name}')" matTooltip="Inserts class name from database">{Class Name}</button>
-              <button mat-stroked-button (click)="insertVariable('{today_date}')" matTooltip="Inserts current date">{Today Date}</button>
+              <button mat-stroked-button (click)="insertVariable('{parent_name}')" matTooltip="Inserts parent name from database">{{ '{' }}Parent Name{{ '}' }}</button>
+              <button mat-stroked-button (click)="insertVariable('{child_name}')" matTooltip="Inserts student name from database">{{ '{' }}Child Name{{ '}' }}</button>
+              <button mat-stroked-button (click)="insertVariable('{class_name}')" matTooltip="Inserts class name from database">{{ '{' }}Class Name{{ '}' }}</button>
+              <button mat-stroked-button (click)="insertVariable('{today_date}')" matTooltip="Inserts current date">{{ '{' }}Today Date{{ '}' }}</button>
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@
       <mat-card-actions align="end">
         <button mat-raised-button (click)="resetForm()" style="color:darkred">Clear</button>
         <button mat-raised-button class="send-btn" (click)="saveTemplate()" [disabled]="!templateName || !templateBody">
-          <mat-icon>save</mat-icon> Save Template
+          <mat-icon>save</mat-icon> Save 
         </button>
       </mat-card-actions>
     </mat-card>
@@ -103,4 +103,4 @@
     </div>
   </div>
 </div>
- -->
+ 

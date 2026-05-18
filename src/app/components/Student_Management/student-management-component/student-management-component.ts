@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { MaterialModule } from '../../../material/material-module';
+import { MaterialModule } from '../../../material/MaterialModule';
 import { TranslateModule } from '@ngx-translate/core';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
@@ -10,11 +10,16 @@ import { Student } from '../../../models';
 import { AddStudentComponent } from '../add-student-component/add-student-component';
 import { StudentService } from '../../../Services/student.service';
 import { ExportService } from '../../../Services/export.service';
+import { ManagementToolbar } from '../../Shared_Management/management-toolbar/management-toolbar';
+import { ManagementSearchFilter } from '../../Shared_Management/management-search-filter/management-search-filter';
+import { ManagementDataTable } from '../../Shared_Management/management-data-table/management-data-table';
 
 @Component({
   selector: 'app-student-management-component',
   standalone: true,
-  imports: [MaterialModule, TranslateModule, CommonModule, MatDialogModule],
+  imports: [MaterialModule, TranslateModule, CommonModule,
+    ManagementToolbar,ManagementSearchFilter,ManagementDataTable
+  ],
   templateUrl: './student-management-component.html',
   styleUrl: './student-management-component.scss',
 })
@@ -84,7 +89,7 @@ export class StudentManagementComponent implements OnInit {
     });
   }
 
-  async deleteStudent(student: Student) {
+  async deleteStudent(student: any) {
     if (confirm(`Are you sure you want to delete ${student.name}?`)) {
       try {
         if (student.id) {

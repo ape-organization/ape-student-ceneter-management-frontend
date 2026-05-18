@@ -1,45 +1,117 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './components/Auth/login/login';
-import { RegisterComponent } from './components/Auth/register/register';
-import { BaseLayoutComponent } from './components/Shared/Layout/base-layout-component/base-layout-component';
-import { DashBoardComponent } from './components/Dashboard/dash-board-component/dash-board-component';
-import { TeacherManagementComponent } from './components/Teacher_Management/teacher-management-component/teacher-management-component';
-import { SubjectManagementComponent } from './components/Subject_Management/Subject_Management/subject-management-component';
-import { LocationManagementComponent } from './components/Location_Management/Location_Management/location-management-component';
-import { CLassManagementComponent } from './components/Class_Management/class-management-component/class-management-component';
-import { StudentManagementComponent } from './components/Student_Management/student-management-component/student-management-component';
-import { CardGeneratorComponent } from './components/BarCode_Management/card-generator-component/card-generator-component';
-import { UserProfileComponent } from './components/Shared/User/user-profile-component/user-profile-component';
-import { SmsCenterComponent } from './components/Messages/SMS_Management/sms-center.component';
-import { SmsTemplatesComponent } from './components/Messages/sms-templates/sms-templates.component';
-import { WhatsappCenterComponent } from './components/Messages/Whatsapp_Management/whatsapp-center.component';
-import { ScanAttendanceComponent } from './components/Attendance/ScanAttendance_Management/scan-attendance.component';
 
 export const routes: Routes = [
   // Auth pages
-  { path: 'signin', component: LoginComponent },
-  { path: 'signup', component: RegisterComponent },
+  {
+    path: 'signin',
+    loadComponent: () =>
+      import('./components/Auth/login/login')
+        .then(m => m.LoginComponent)
+  },
+  {
+    path: 'signup',
+    loadComponent: () =>
+      import('./components/Auth/register/register')
+        .then(m => m.RegisterComponent)
+  },
 
-  // Main layout with children
+  // Main layout
   {
     path: '',
-    component: BaseLayoutComponent,
+    loadComponent: () =>
+      import('./components/Shared/Layout/base-layout-component/base-layout-component')
+        .then(m => m.BaseLayoutComponent),
+
     children: [
-      { path: '', component: DashBoardComponent },
-      { path: 'SMS_Center', component: SmsCenterComponent },
-      { path: 'SMS_Templates', component: SmsTemplatesComponent },
-      { path: 'Whatsapp_Center', component: WhatsappCenterComponent },
-      { path: 'Scan_Attendance', component: ScanAttendanceComponent },
-      { path: 'barcode_management', component: CardGeneratorComponent },
-      { path: 'Teachers_Management', component: TeacherManagementComponent },
-      { path: 'Location_Management', component: LocationManagementComponent },
-      { path: 'Subject_Management', component: SubjectManagementComponent },
-      { path: 'Student_Management', component: StudentManagementComponent },
-      { path: 'Class_Management', component: CLassManagementComponent },
-      { path: 'profile', component: UserProfileComponent }
+      {
+        path: '',
+        loadComponent: () =>
+          import('./components/Dashboard/dash-board-component/dash-board-component')
+            .then(m => m.DashBoardComponent)
+      },
+
+      {
+        path: 'SMS_Center',
+        loadComponent: () =>
+          import('./components/Messages/SMS_Management/sms-center.component')
+            .then(m => m.SmsCenterComponent)
+      },
+
+      {
+        path: 'SMS_Templates',
+        loadComponent: () =>
+          import('./components/Messages/sms-templates/sms-templates.component')
+            .then(m => m.SmsTemplatesComponent)
+      },
+
+      {
+        path: 'Whatsapp_Center',
+        loadComponent: () =>
+          import('./components/Messages/Whatsapp_Management/whatsapp-center.component')
+            .then(m => m.WhatsappCenterComponent)
+      },
+
+      {
+        path: 'Scan_Attendance',
+        loadComponent: () =>
+          import('./components/Attendance/ScanAttendance_Management/scan-attendance.component')
+            .then(m => m.ScanAttendanceComponent)
+      },
+
+      {
+        path: 'barcode_management',
+        loadComponent: () =>
+          import('./components/BarCode_Management/card-generator-component/card-generator-component')
+            .then(m => m.CardGeneratorComponent)
+      },
+
+      {
+        path: 'Teachers_Management',
+        loadComponent: () =>
+          import('./components/Teacher_Management/teacher-management-component/teacher-management-component')
+            .then(m => m.TeacherManagementComponent)
+      },
+
+      {
+        path: 'Location_Management',
+        loadComponent: () =>
+          import('./components/Location_Management/Location_Management/location-management-component')
+            .then(m => m.LocationManagementComponent)
+      },
+
+      {
+        path: 'Subject_Management',
+        loadComponent: () =>
+          import('./components/Subject_Management/Subject_Management/subject-management-component')
+            .then(m => m.SubjectManagementComponent)
+      },
+
+      {
+        path: 'Student_Management',
+        loadComponent: () =>
+          import('./components/Student_Management/student-management-component/student-management-component')
+            .then(m => m.StudentManagementComponent)
+      },
+
+      {
+        path: 'Class_Management',
+        loadComponent: () =>
+          import('./components/Class_Management/class-management-component/class-management-component')
+            .then(m => m.CLassManagementComponent)
+      },
+
+      {
+        path: 'profile',
+        loadComponent: () =>
+          import('./components/Shared/User/user-profile-component/user-profile-component')
+            .then(m => m.UserProfileComponent)
+      }
     ]
   },
 
   // Fallback
-  { path: '**', redirectTo: '' }
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];

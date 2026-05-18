@@ -1,15 +1,15 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
-import { MaterialModule } from '../../../material/material-module';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MaterialModule } from '../../../material/MaterialModule';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Subject } from '../../../models';
 import { TranslateModule } from '@ngx-translate/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../../material/SharedModule';
 
 @Component({
   selector: 'app-add-subject-component',
   standalone: true,
-  imports: [MaterialModule, ReactiveFormsModule, TranslateModule, CommonModule, MatDialogModule],
+  imports: [MaterialModule, SharedModule, TranslateModule],
   templateUrl: './add-subject-component.html',
   styleUrl: './add-subject-component.scss',
 })
